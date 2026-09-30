@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch08-secpod
+spec:
+  containers:
+    - name: box
+      image: busybox:1.37
+      command: ["sleep", "3600"]
+      env:
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: kubebook-ch08-db
+              key: password
+      envFrom:
+        - prefix: DB_
+          secretRef:
+            name: kubebook-ch08-manifest
+      volumeMounts:
+        - name: creds
+          mountPath: /etc/creds
+          readOnly: true
+  volumes:
+    - name: creds
+      secret:
+        secretName: kubebook-ch08-db
+        defaultMode: 0400

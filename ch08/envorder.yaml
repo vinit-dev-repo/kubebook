@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch08-envorder
+spec:
+  restartPolicy: Never
+  containers:
+    - name: box
+      image: busybox:1.37
+      command: ["sh", "-c", "echo EARLY=$EARLY; echo LATE=$LATE"]
+      env:
+        - name: EARLY
+          value: "$(BASE)-x"
+        - name: BASE
+          value: base
+        - name: LATE
+          value: "$(BASE)-y"

@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch08-cmvol
+spec:
+  containers:
+    - name: box
+      image: busybox:1.37
+      command: ["sleep", "3600"]
+      env:
+        - name: COLOR
+          valueFrom:
+            configMapKeyRef:
+              name: kubebook-ch08-cm
+              key: APP_COLOR
+      volumeMounts:
+        - name: all
+          mountPath: /etc/all
+        - name: some
+          mountPath: /etc/some
+        - name: all
+          mountPath: /etc/one/app.properties
+          subPath: app.properties
+  volumes:
+    - name: all
+      configMap:
+        name: kubebook-ch08-cm
+    - name: some
+      configMap:
+        name: kubebook-ch08-cm
+        items:
+          - key: app.properties
+            path: props/app.conf

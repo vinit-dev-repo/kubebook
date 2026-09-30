@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch08-missing
+spec:
+  containers:
+    - name: box
+      image: busybox:1.37
+      command: ["sleep", "3600"]
+      env:
+        - name: COLOR
+          valueFrom:
+            configMapKeyRef:
+              name: kubebook-ch08-nosuch
+              key: APP_COLOR

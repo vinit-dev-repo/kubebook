@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: lonely
+  namespace: kubebook-ch08-ex
+spec:
+  containers:
+    - name: box
+      image: busybox:1.37
+      command: ["sleep", "3600"]
+      env:
+        - name: SETTING
+          valueFrom:
+            configMapKeyRef:
+              name: nosuch-map
+              key: k

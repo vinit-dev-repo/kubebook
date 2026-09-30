@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kubebook-ch08-imm
+immutable: true
+data:
+  VERSION: "1"

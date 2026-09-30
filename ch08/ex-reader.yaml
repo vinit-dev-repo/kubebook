@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: reader
+  namespace: kubebook-ch08-ex
+spec:
+  containers:
+    - name: box
+      image: busybox:1.37
+      command: ["sleep", "3600"]
+      volumeMounts:
+        - name: props
+          mountPath: /etc/ex
+  volumes:
+    - name: props
+      configMap:
+        name: app-props

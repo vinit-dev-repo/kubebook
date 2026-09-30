@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kubebook-ch08-manifest
+type: Opaque
+data:
+  username: c2hvcA==
+stringData:
+  password: plain-text-here
+  note: "stringData is written as data, base64 by the server"

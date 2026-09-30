@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kubebook-ch08-basicbad
+type: kubernetes.io/basic-auth
+stringData:
+  user: shop
