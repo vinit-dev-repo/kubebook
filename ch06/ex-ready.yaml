@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch06-ex-web
+  labels:
+    app: exweb
+spec:
+  containers:
+    - name: web
+      image: nginx:1.28-alpine
+      readinessProbe:
+        httpGet:
+          path: /ready
+          port: 80
+        periodSeconds: 2
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubebook-ch06-ex-web
+spec:
+  selector:
+    app: exweb
+  ports:
+    - port: 80

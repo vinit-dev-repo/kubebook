@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch06-hooks
+spec:
+  terminationGracePeriodSeconds: 5
+  containers:
+    - name: web
+      image: nginx:1.28-alpine
+      lifecycle:
+        postStart:
+          exec:
+            command: ["sh", "-c", "echo started > /usr/share/nginx/html/hook.txt"]
+        preStop:
+          exec:
+            command: ["sh", "-c", "sleep 2"]

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: kubebook-ch09-rc
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: rc-web
+    spec:
+      containers:
+        - name: web
+          image: nginx:1.28-alpine

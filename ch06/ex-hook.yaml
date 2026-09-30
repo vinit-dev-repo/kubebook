@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch06-ex-hook
+spec:
+  containers:
+    - name: web
+      image: nginx:1.28-alpine
+      lifecycle:
+        postStart:
+          exec:
+            command: ["sh", "-c", "hostname > /usr/share/nginx/html/host.txt"]
