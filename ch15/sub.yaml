@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch15-sub
+spec:
+  nodeName: kubebook-ch15-worker
+  volumes:
+    - name: logs
+      hostPath:
+        path: /kubebook-ch15/logs
+        type: DirectoryOrCreate
+    - name: cfg
+      configMap:
+        name: kubebook-ch15-cm
+  containers:
+    - name: app
+      image: busybox:1.37
+      command: ["sh", "-c", "echo hello > /logs/hello.txt; sleep 3600"]
+      env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+      volumeMounts:
+        - name: logs
+          mountPath: /logs
+          subPathExpr: $(POD_NAME)
+        - name: cfg
+          mountPath: /etc/app.conf
+          subPath: app.conf

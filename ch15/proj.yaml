@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch15-proj
+spec:
+  volumes:
+    - name: all
+      projected:
+        defaultMode: 0440
+        sources:
+          - configMap:
+              name: kubebook-ch15-cm
+              items:
+                - key: app.conf
+                  path: app.conf
+          - secret:
+              name: kubebook-ch15-sec
+              items:
+                - key: password
+                  path: db/password
+                  mode: 0400
+          - downwardAPI:
+              items:
+                - path: pod/name
+                  fieldRef:
+                    fieldPath: metadata.name
+          - serviceAccountToken:
+              audience: kubebook-ch15
+              expirationSeconds: 600
+              path: token
+  containers:
+    - name: app
+      image: busybox:1.37
+      command: ["sleep", "3600"]
+      volumeMounts:
+        - name: all
+          mountPath: /all
+          readOnly: true

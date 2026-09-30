@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch15-cm
+spec:
+  securityContext:
+    fsGroup: 2000
+  volumes:
+    - name: cfg
+      configMap:
+        name: kubebook-ch15-cm
+        defaultMode: 0440
+        items:
+          - key: app.conf
+            path: app.conf
+            mode: 0400
+          - key: other
+            path: other.txt
+    - name: missing
+      configMap:
+        name: kubebook-ch15-nosuch
+        optional: true
+    - name: sec
+      secret:
+        secretName: kubebook-ch15-sec
+        defaultMode: 0400
+  containers:
+    - name: app
+      image: busybox:1.37
+      command: ["sleep", "3600"]
+      volumeMounts:
+        - name: cfg
+          mountPath: /etc/cfg
+        - name: missing
+          mountPath: /etc/missing
+        - name: sec
+          mountPath: /etc/sec

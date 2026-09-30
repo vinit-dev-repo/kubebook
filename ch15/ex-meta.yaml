@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: meta
+  namespace: kubebook-ch15-ex
+  labels:
+    team: blue
+spec:
+  volumes:
+    - name: info
+      downwardAPI:
+        items:
+          - path: labels
+            fieldRef:
+              fieldPath: metadata.labels
+          - path: cpu_millis
+            resourceFieldRef:
+              containerName: app
+              resource: limits.cpu
+              divisor: 1m
+  containers:
+    - name: app
+      image: busybox:1.37
+      command: ["sleep", "3600"]
+      resources:
+        limits:
+          cpu: 500m
+      volumeMounts:
+        - name: info
+          mountPath: /etc/info

@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: proj
+  namespace: kubebook-ch15-ex
+spec:
+  volumes:
+    - name: bundle
+      projected:
+        sources:
+          - configMap:
+              name: ex-cm
+              items:
+                - key: greeting
+                  path: greeting
+          - serviceAccountToken:
+              audience: kubebook-ch15-ex
+              expirationSeconds: 900
+              path: token
+  containers:
+    - name: app
+      image: busybox:1.37
+      command: ["sleep", "3600"]
+      volumeMounts:
+        - name: bundle
+          mountPath: /proj
+          readOnly: true

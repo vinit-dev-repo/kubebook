@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch15-noauto
+spec:
+  serviceAccountName: kubebook-ch15-sa
+  containers:
+    - name: app
+      image: busybox:1.37
+      command: ["sleep", "3600"]

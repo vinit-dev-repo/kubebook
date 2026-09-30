@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch15-img
+spec:
+  volumes:
+    - name: nginxfiles
+      image:
+        reference: nginx:1.28-alpine
+        pullPolicy: IfNotPresent
+  containers:
+    - name: app
+      image: busybox:1.37
+      command: ["sleep", "3600"]
+      volumeMounts:
+        - name: nginxfiles
+          mountPath: /img
