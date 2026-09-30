@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch05-init
+spec:
+  initContainers:
+    - name: first
+      image: busybox:1.37
+      command: ["sh", "-c", "echo first ran; echo first ran > /work/log; sleep 2"]
+      volumeMounts:
+        - name: w
+          mountPath: /work
+    - name: second
+      image: busybox:1.37
+      command: ["sh", "-c", "echo second ran; echo second ran >> /work/log; sleep 2"]
+      volumeMounts:
+        - name: w
+          mountPath: /work
+  containers:
+    - name: app
+      image: busybox:1.37
+      command: ["sh", "-c", "cat /work/log; sleep 3600"]
+      volumeMounts:
+        - name: w
+          mountPath: /work
+  volumes:
+    - name: w
+      emptyDir: {}

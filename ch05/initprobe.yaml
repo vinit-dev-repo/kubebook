@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch05-initprobe
+spec:
+  initContainers:
+    - name: setup
+      image: busybox:1.37
+      command: ["sh", "-c", "sleep 1"]
+      readinessProbe:
+        exec:
+          command: ["true"]
+  containers:
+    - name: app
+      image: busybox:1.37
+      command: ["sleep", "3600"]

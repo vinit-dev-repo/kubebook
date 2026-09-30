@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch05-sleep-default
+spec:
+  restartPolicy: Never
+  containers:
+    - name: s
+      image: kubebook-ch05-sleeper:1
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch05-sleep-args
+spec:
+  restartPolicy: Never
+  containers:
+    - name: s
+      image: kubebook-ch05-sleeper:1
+      args: ["2"]
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch05-sleep-command
+spec:
+  restartPolicy: Never
+  containers:
+    - name: s
+      image: kubebook-ch05-sleeper:1
+      command: ["echo"]
+      args: ["hello from the Pod"]
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch05-sleep-env
+spec:
+  restartPolicy: Never
+  containers:
+    - name: s
+      image: kubebook-ch05-sleeper:1
+      env:
+        - name: SECONDS_TO_SLEEP
+          value: "1"
+      args: ["$(SECONDS_TO_SLEEP)"]
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch05-sleep-shell
+spec:
+  restartPolicy: Never
+  containers:
+    - name: s
+      image: busybox:1.37
+      command: ["sh", "-c", "echo start; sleep 1; echo done"]

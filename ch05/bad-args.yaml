@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch05-bad
+spec:
+  restartPolicy: Never
+  containers:
+    - name: s
+      image: kubebook-ch05-sleeper:1
+      args: [3]
