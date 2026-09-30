@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: __NAME__
+spec:
+  replicas: __REPLICAS__
+  selector:
+    matchLabels:
+      app: web
+      deploy: __NAME__
+  template:
+    metadata:
+      labels:
+        app: web
+        deploy: __NAME__
+        version: __VERSION__
+    spec:
+      containers:
+        - name: web
+          image: nginx:1.28-alpine
+          command:
+            - sh
+            - -c
+            - echo "$VERSION" > /usr/share/nginx/html/index.html && exec nginx -g 'daemon off;'
+          env:
+            - name: VERSION
+              value: __VERSION__
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
