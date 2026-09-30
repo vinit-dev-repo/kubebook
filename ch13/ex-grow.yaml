@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: grow
+  namespace: kubebook-ch13-ex
+spec:
+  terminationGracePeriodSeconds: 1
+  containers:
+    - name: grow
+      image: busybox:1.37
+      command: ["sleep", "3600"]
+      resizePolicy:
+        - resourceName: cpu
+          restartPolicy: NotRequired
+      resources:
+        requests:
+          cpu: 100m
+          memory: 64Mi
+        limits:
+          cpu: 100m
+          memory: 64Mi

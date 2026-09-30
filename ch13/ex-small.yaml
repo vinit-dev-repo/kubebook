@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: small
+  namespace: kubebook-ch13-ex
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: small
+  template:
+    metadata:
+      labels:
+        app: small
+    spec:
+      terminationGracePeriodSeconds: 1
+      containers:
+        - name: small
+          image: busybox:1.37
+          command: ["sleep", "3600"]
+          resources:
+            requests:
+              cpu: 100m
+              memory: 32Mi
+---
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: small
+  namespace: kubebook-ch13-ex
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: small
+  updatePolicy:
+    updateMode: "Off"

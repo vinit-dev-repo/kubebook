@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch13-reqgtlim
+spec:
+  containers:
+    - name: web
+      image: nginx:1.28-alpine
+      resources:
+        requests:
+          cpu: "2"
+        limits:
+          cpu: "1"

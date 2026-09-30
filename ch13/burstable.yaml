@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch13-burstable
+spec:
+  containers:
+    - name: web
+      image: nginx:1.28-alpine
+      resources:
+        requests:
+          cpu: 100m
+          memory: 32Mi
+        limits:
+          cpu: "1"
+          memory: 128Mi

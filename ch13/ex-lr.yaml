@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: defaults
+  namespace: kubebook-ch13-ex
+spec:
+  limits:
+    - type: Container
+      default:
+        cpu: 300m
+        memory: 96Mi
+      defaultRequest:
+        cpu: 100m
+        memory: 32Mi
