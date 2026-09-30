@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: front
+  namespace: kubebook-ch07-ex
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      role: front
+  template:
+    metadata:
+      labels:
+        role: front
+    spec:
+      containers:
+        - name: web
+          image: nginx:1.28-alpine

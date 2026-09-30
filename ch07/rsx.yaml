@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: kubebook-ch07-rsx
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: rsx
+    matchExpressions:
+      - { key: tier, operator: In, values: [web, api] }
+  template:
+    metadata:
+      labels:
+        app: rsx
+        tier: web
+    spec:
+      containers:
+        - name: web
+          image: nginx:1.28-alpine

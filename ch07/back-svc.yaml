@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: back
+  namespace: kubebook-ch07-ex
+spec:
+  selector:
+    role: back
+  ports:
+    - port: 80
+      targetPort: 80

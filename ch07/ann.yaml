@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch07-annotated
+  annotations:
+    created-by: "alice@example.com"
+    revision: "3"
+    managed: "yes"
+spec:
+  containers:
+    - name: web
+      image: nginx:1.28-alpine
