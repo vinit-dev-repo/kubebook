@@ -1,0 +1,19 @@
+[Unit]
+Description=kubebook etcd by hand
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/etcd \
+  --name kubebook-ch39-etcd \
+  --data-dir /var/lib/kubebook-ch39-etcd \
+  --listen-client-urls https://127.0.0.1:12379 \
+  --advertise-client-urls https://127.0.0.1:12379 \
+  --listen-peer-urls http://127.0.0.1:12380 \
+  --cert-file /root/kubebook-ch39-etcd-pki/server.crt \
+  --key-file /root/kubebook-ch39-etcd-pki/server.key \
+  --trusted-ca-file /root/kubebook-ch39-etcd-pki/ca.crt \
+  --client-cert-auth
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

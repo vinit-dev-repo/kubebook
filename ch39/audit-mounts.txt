@@ -1,0 +1,5 @@
+    - mountPath: /etc/kubernetes/audit
+      name: audit-policy
+      readOnly: true
+    - mountPath: /var/log/kubernetes/audit
+      name: audit-log

@@ -1,0 +1,11 @@
+apiVersion: audit.k8s.io/v1
+kind: Policy
+omitStages:
+  - RequestReceived
+rules:
+  - level: Request
+    namespaces: ["kubebook-ch39-ex-audit"]
+    resources:
+      - group: ""
+        resources: ["configmaps"]
+  - level: None
