@@ -1,0 +1,9 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ex-deny
+  namespace: kubebook-ch19-ex
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress

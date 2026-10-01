@@ -1,0 +1,10 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-ingress-empty
+  namespace: kubebook-ch19-shop
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+  ingress: []

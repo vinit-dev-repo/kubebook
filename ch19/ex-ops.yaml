@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ex-allow-ops
+  namespace: kubebook-ch19-ex
+spec:
+  podSelector:
+    matchLabels:
+      app: srv
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kubebook-ch19-ops
