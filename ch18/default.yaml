@@ -1,0 +1,10 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kubebook-ch18-default
+spec:
+  defaultBackend:
+    service:
+      name: kubebook-ch18-web
+      port:
+        number: 80

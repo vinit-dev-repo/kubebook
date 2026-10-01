@@ -1,0 +1,38 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kubebook-ch18-ing2
+spec:
+  ingressClassName: cloud-provider-kind
+  defaultBackend:
+    service:
+      name: kubebook-ch18-web
+      port:
+        number: 80
+  rules:
+    - host: exact.kubebook.example
+      http:
+        paths:
+          - path: /only
+            pathType: Exact
+            backend:
+              service:
+                name: kubebook-ch18-api
+                port:
+                  name: http
+          - path: /pre
+            pathType: Prefix
+            backend:
+              service:
+                name: kubebook-ch18-api
+                port:
+                  number: 80
+    - http:
+        paths:
+          - path: /anyhost
+            pathType: Prefix
+            backend:
+              service:
+                name: kubebook-ch18-api
+                port:
+                  number: 80

@@ -1,0 +1,17 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: ex-redirect
+  namespace: kubebook-ch18-ex
+spec:
+  parentRefs:
+    - name: ex-gw
+      sectionName: http
+  hostnames:
+    - old.kubebook.example
+  rules:
+    - filters:
+        - type: RequestRedirect
+          requestRedirect:
+            scheme: https
+            statusCode: 301
