@@ -1,0 +1,14 @@
+apiVersion: kubebook.example.com/v1
+kind: Greeting
+metadata:
+  name: morning
+spec:
+  message: good morning
+  times: 2
+---
+apiVersion: kubebook.example.com/v1
+kind: Greeting
+metadata:
+  name: evening
+spec:
+  message: good evening

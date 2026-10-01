@@ -1,0 +1,6 @@
+apiVersion: kubebook.example.com/v1
+kind: Greeting
+metadata:
+  name: leak
+spec:
+  message: my secret plan

@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: greeting-controller
+spec:
+  selector: {matchLabels: {app: greeting-controller}}
+  template:
+    metadata: {labels: {app: greeting-controller}}
+    spec:
+      serviceAccountName: greeting-controller
+      containers:
+        - name: controller
+          image: python:3.13-alpine
+          command: ["python", "-u", "/code/controller.py"]
+          volumeMounts: [{name: code, mountPath: /code}]
+      volumes: [{name: code, configMap: {name: greeting-controller-code}}]

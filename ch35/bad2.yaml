@@ -1,0 +1,7 @@
+apiVersion: kubebook.example.com/v1
+kind: Greeting
+metadata:
+  name: bad2
+spec:
+  message: hi
+  colour: blue

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubebook-webhook
+spec:
+  selector: {matchLabels: {app: kubebook-webhook}}
+  template:
+    metadata: {labels: {app: kubebook-webhook, team: platform}}
+    spec:
+      containers:
+        - name: webhook
+          image: python:3.13-alpine
+          command: ["python", "-u", "/code/webhook.py"]
+          ports: [{containerPort: 8443}]
+          volumeMounts: [{name: code, mountPath: /code}, {name: certs, mountPath: /certs}]
+      volumes:
+        - {name: code, configMap: {name: kubebook-webhook-code}}
+        - {name: certs, secret: {secretName: kubebook-webhook-tls}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubebook-webhook
+spec:
+  selector: {app: kubebook-webhook}
+  ports: [{port: 443, targetPort: 8443}]

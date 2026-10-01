@@ -1,0 +1,6 @@
+apiVersion: kubebook.example.com/v1
+kind: Greeting
+metadata:
+  name: hello
+spec:
+  message: hello from a custom resource
