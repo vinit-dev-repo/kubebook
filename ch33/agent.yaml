@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: kubebook-ch33-agent
+spec:
+  selector:
+    matchLabels:
+      app: kubebook-ch33-agent
+  template:
+    metadata:
+      labels:
+        app: kubebook-ch33-agent
+    spec:
+      containers:
+        - name: agent
+          image: busybox:1.37
+          command: ["sh", "-c"]
+          args:
+            - |
+              while true; do
+                for f in /var/log/pods/default_kubebook-ch33-talker_*/*/0.log; do
+                  [ -f "$f" ] && echo "agent read $(wc -l < "$f" | tr -d ' ') lines of $(basename "$(dirname "$f")")"
+                done
+                sleep 3
+              done
+          volumeMounts:
+            - name: pods
+              mountPath: /var/log/pods
+              readOnly: true
+      volumes:
+        - name: pods
+          hostPath:
+            path: /var/log/pods
