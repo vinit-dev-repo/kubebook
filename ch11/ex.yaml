@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubebook-ch11-ex-web
+spec:
+  clusterIP: None
+  selector:
+    app: kubebook-ch11-ex-web
+  ports:
+    - port: 80
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: kubebook-ch11-ex-web
+spec:
+  serviceName: kubebook-ch11-ex-web
+  replicas: 2
+  selector:
+    matchLabels:
+      app: kubebook-ch11-ex-web
+  template:
+    metadata:
+      labels:
+        app: kubebook-ch11-ex-web
+    spec:
+      initContainers:
+        - name: mark
+          image: busybox:1.37
+          command: ["sh", "-c", "echo \"$(hostname) started\" >> /data/starts.log"]
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      containers:
+        - name: web
+          image: nginx:1.28-alpine
+          volumeMounts:
+            - name: data
+              mountPath: /data
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 100Mi
