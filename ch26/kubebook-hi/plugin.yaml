@@ -1,0 +1,16 @@
+apiVersion: v1
+type: cli/v1
+name: kubebook-hi
+version: 0.1.0
+runtime: subprocess
+config:
+  usage: kubebook-hi [words]
+  shortHelp: say hello from the book
+  longHelp: A tiny plugin in the Helm 4 plugin format.
+runtimeConfig:
+  platformCommand:
+    - os: windows
+      command: sh
+      args:
+        - ${HELM_PLUGIN_DIR}/hi.sh
+    - command: ${HELM_PLUGIN_DIR}/hi.sh

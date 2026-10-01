@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Release.Name }}-pre-install
+  annotations:
+    "helm.sh/hook": pre-install
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: hook
+          image: busybox:1.37
+          command: ["sh", "-c", "echo pre-install ran for revision {{ .Release.Revision }}"]

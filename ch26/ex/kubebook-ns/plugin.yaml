@@ -1,0 +1,16 @@
+apiVersion: v1
+type: cli/v1
+name: kubebook-ns
+version: 0.1.0
+runtime: subprocess
+config:
+  usage: kubebook-ns
+  shortHelp: print the namespace Helm passes
+  longHelp: A plugin that prints HELM_NAMESPACE.
+runtimeConfig:
+  platformCommand:
+    - os: windows
+      command: sh
+      args:
+        - ${HELM_PLUGIN_DIR}/ns.sh
+    - command: ${HELM_PLUGIN_DIR}/ns.sh

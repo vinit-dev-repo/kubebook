@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-kept
+  annotations:
+    "helm.sh/resource-policy": keep
+data:
+  important: "yes"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-normal
+data:
+  important: "no"
