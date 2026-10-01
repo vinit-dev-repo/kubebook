@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bad-web
+  namespace: kubebook-ch38-baseline
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bad-web
+  template:
+    metadata:
+      labels:
+        app: bad-web
+    spec:
+      containers:
+        - name: c
+          image: busybox:1.37
+          command: ["sleep", "3600"]
+          securityContext:
+            privileged: true

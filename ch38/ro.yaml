@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ro
+spec:
+  volumes:
+    - name: tmp
+      emptyDir: {}
+  containers:
+    - name: c
+      image: busybox:1.37
+      command: ["sleep", "3600"]
+      securityContext:
+        readOnlyRootFilesystem: true
+      volumeMounts:
+        - name: tmp
+          mountPath: /tmp
