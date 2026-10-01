@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kubebook-ch12-later
+spec:
+  suspend: true
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: box
+          image: busybox:1.37
+          command: ["echo", "finally"]

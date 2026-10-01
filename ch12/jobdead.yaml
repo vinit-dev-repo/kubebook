@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kubebook-ch12-slow
+spec:
+  activeDeadlineSeconds: 5
+  ttlSecondsAfterFinished: 15
+  template:
+    spec:
+      restartPolicy: Never
+      terminationGracePeriodSeconds: 1
+      containers:
+        - name: box
+          image: busybox:1.37
+          command: ["sleep", "60"]

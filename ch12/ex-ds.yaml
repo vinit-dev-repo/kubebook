@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: edge
+  namespace: kubebook-ch12-ex
+spec:
+  selector:
+    matchLabels:
+      app: edge
+  template:
+    metadata:
+      labels:
+        app: edge
+    spec:
+      nodeSelector:
+        kubebook-ch12-role: edge
+      terminationGracePeriodSeconds: 1
+      containers:
+        - name: edge
+          image: busybox:1.37
+          command: ["sleep", "3600"]

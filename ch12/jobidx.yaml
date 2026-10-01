@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kubebook-ch12-indexed
+spec:
+  completions: 3
+  parallelism: 3
+  completionMode: Indexed
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: box
+          image: busybox:1.37
+          command: ["sh", "-c", "echo \"I am index $JOB_COMPLETION_INDEX of $(hostname)\""]

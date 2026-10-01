@@ -1,0 +1,11 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kubebook-ch12-bad
+spec:
+  template:
+    spec:
+      containers:
+        - name: box
+          image: busybox:1.37
+          command: ["true"]

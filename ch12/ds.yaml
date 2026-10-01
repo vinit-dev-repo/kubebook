@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: kubebook-ch12-agent
+  labels:
+    app: kubebook-ch12-agent
+spec:
+  selector:
+    matchLabels:
+      app: kubebook-ch12-agent
+  template:
+    metadata:
+      labels:
+        app: kubebook-ch12-agent
+    spec:
+      terminationGracePeriodSeconds: 1
+      containers:
+        - name: agent
+          image: busybox:1.37
+          command: ["sh", "-c", "echo \"agent on $NODE_NAME\"; sleep 3600"]
+          env:
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName

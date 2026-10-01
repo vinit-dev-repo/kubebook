@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kubebook-ch12-fail
+spec:
+  backoffLimit: 2
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: box
+          image: busybox:1.37
+          command: ["sh", "-c", "echo 'this task always fails'; exit 1"]

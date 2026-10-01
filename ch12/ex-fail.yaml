@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: broken
+  namespace: kubebook-ch12-ex
+spec:
+  backoffLimit: 1
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: box
+          image: busybox:1.37
+          command: ["sh", "-c", "echo oops; exit 1"]
