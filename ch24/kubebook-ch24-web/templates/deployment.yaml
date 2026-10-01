@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "kubebook-ch24-web.fullname" . }}
+  labels:
+    {{- include "kubebook-ch24-web.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "kubebook-ch24-web.selector" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "kubebook-ch24-web.selector" . | nindent 8 }}
+    spec:
+      containers:
+        - name: web
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+          {{- range .Values.ports }}
+            - containerPort: {{ . }}
+          {{- end }}

@@ -1,0 +1,1 @@
+{{ .Release.Name }} runs {{ .Values.replicaCount }} Pods of {{ .Values.image.repository }}:{{ .Values.image.tag }}.

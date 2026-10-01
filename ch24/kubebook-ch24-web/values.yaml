@@ -1,0 +1,15 @@
+replicaCount: 2
+image:
+  repository: nginx
+  tag: 1.28-alpine
+env: dev
+features:
+  tls: false
+  metrics: true
+labels:
+  team: blue
+  tier: web
+ports:
+  - 80
+  - 8080
+serviceType: ClusterIP

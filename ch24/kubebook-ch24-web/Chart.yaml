@@ -1,0 +1,6 @@
+apiVersion: v2
+name: kubebook-ch24-web
+description: A small web chart written for this book
+type: application
+version: 1.0.0
+appVersion: "1.28"
