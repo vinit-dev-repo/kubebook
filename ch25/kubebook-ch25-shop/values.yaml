@@ -1,0 +1,6 @@
+frontend:
+  replicaCount: 2
+backend:
+  enabled: true
+global:
+  env: lab

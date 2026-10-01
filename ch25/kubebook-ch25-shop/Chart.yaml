@@ -1,0 +1,13 @@
+apiVersion: v2
+name: kubebook-ch25-shop
+description: A parent chart for this book
+type: application
+version: 1.0.0
+dependencies:
+  - name: frontend
+    version: 0.1.1
+    repository: file://../frontend
+  - name: backend
+    version: ~0.2.0
+    repository: file://../backend
+    condition: backend.enabled

@@ -1,0 +1,9 @@
+replicaCount: 1
+message: from the child defaults
+exports:
+  connection:
+    host: backend-db
+    port: 5432
+service:
+  port: 8080
+  type: ClusterIP
