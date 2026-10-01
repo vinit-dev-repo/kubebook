@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: restricted-ping
+  namespace: kubebook-ch40-restricted
+spec:
+  terminationGracePeriodSeconds: 1
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 1000
+    seccompProfile:
+      type: RuntimeDefault
+  containers:
+    - name: c
+      image: busybox:1.37
+      command: ["sleep", "3600"]
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop: ["ALL"]

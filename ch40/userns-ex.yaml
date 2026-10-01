@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: userns-ex
+spec:
+  hostUsers: false
+  terminationGracePeriodSeconds: 1
+  volumes:
+    - name: data
+      emptyDir: {}
+  containers:
+    - name: c
+      image: busybox:1.37
+      command: ["sleep", "3611"]
+      volumeMounts:
+        - name: data
+          mountPath: /data
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: plain-ex
+spec:
+  terminationGracePeriodSeconds: 1
+  containers:
+    - name: c
+      image: busybox:1.37
+      command: ["sleep", "3612"]

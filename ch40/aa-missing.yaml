@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: aa-missing
+spec:
+  terminationGracePeriodSeconds: 1
+  containers:
+    - name: c
+      image: busybox:1.37
+      command: ["sleep", "3600"]
+      securityContext:
+        appArmorProfile:
+          type: Localhost
+          localhostProfile: kubebook-not-loaded
