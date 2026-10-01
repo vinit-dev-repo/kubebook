@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - deployment.yaml
+configMapGenerator:
+  - name: web-config
+    literals:
+      - mode=dev
+    files:
+      - motd.txt
+    envs:
+      - app.env
+secretGenerator:
+  - name: web-secret
+    literals:
+      - password=not-a-real-password

@@ -1,0 +1,6 @@
+bases:
+  - ../base
+commonLabels:
+  team: blue
+patchesStrategicMerge:
+  - p.yaml

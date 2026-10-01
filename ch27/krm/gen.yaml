@@ -1,0 +1,8 @@
+apiVersion: kubebook.example/v1
+kind: ScriptGenerator
+metadata:
+  name: gen
+  annotations:
+    config.kubernetes.io/function: |
+      exec:
+        path: ./plugins/gen.sh

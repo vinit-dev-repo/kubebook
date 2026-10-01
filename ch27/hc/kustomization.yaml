@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+helmCharts:
+  - name: podinfo
+    repo: https://stefanprodan.github.io/podinfo
+    version: 6.14.1
+    releaseName: kubebook-ch27-pi
+    namespace: kubebook-ch27
+    valuesInline:
+      replicaCount: 2
+namePrefix: x-

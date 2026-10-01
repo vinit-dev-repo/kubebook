@@ -1,0 +1,10 @@
+apiVersion: example.com/v1
+kind: Widget
+metadata:
+  name: w1
+spec:
+  parts:
+    - name: a
+      size: 1
+    - name: b
+      size: 2

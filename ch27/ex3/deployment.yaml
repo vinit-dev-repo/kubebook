@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: greeter
+spec:
+  selector:
+    matchLabels:
+      app: greeter
+  template:
+    metadata:
+      labels:
+        app: greeter
+    spec:
+      containers:
+        - name: greeter
+          image: busybox:1.37
+          command: ["sleep", "3600"]
+          envFrom:
+            - configMapRef:
+                name: greeting

@@ -1,0 +1,6 @@
+resources:
+  - widget.yaml
+openapi:
+  path: schema.json
+patches:
+  - path: patch.yaml

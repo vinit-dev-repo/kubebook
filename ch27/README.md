@@ -1,0 +1,82 @@
+# 27 - Kustomize - Bases, Overlays, Transformers, Patches and Components
+
+Files this chapter writes in its blocks, extracted byte for byte from the certified chapter. The chapter itself explains every line; read it in the tutorial. The blocks `cat` these files into a work folder `~/kubebook-ch27`; cloning this folder there gives the same result.
+
+- `base/deployment.yaml`
+- `base/service.yaml`
+- `base/kustomization.yaml`
+- `tree/db/configmap.yaml`
+- `multi/app.yaml`
+- `shared/replicas.yaml`
+- `lr/kustomization.yaml`
+- `common/kustomization.yaml`
+- `img/kustomization.yaml`
+- `img/kustomization.yaml`
+- `img/kustomization.yaml`
+- `img/kustomization.yaml`
+- `img/kustomization.yaml`
+- `old/p.yaml`
+- `old/kustomization.yaml`
+- `gen/deployment.yaml`
+- `gen/kustomization.yaml`
+- `gen-prod/kustomization.yaml`
+- `sec/kustomization.yaml`
+- `sec/kustomization.yaml`
+- `pat/replicas.yaml`
+- `pat/kustomization.yaml`
+- `pat/kustomization.yaml`
+- `pat/kustomization.yaml`
+- `pat/kustomization.yaml`
+- `pat/kustomization.yaml`
+- `pat/kustomization.yaml`
+- `pat/kustomization.yaml`
+- `pat/kustomization.yaml`
+- `pat/kustomization.yaml`
+- `pat/kustomization.yaml`
+- `pat/kustomization.yaml`
+- `pat/kustomization.yaml`
+- `pat/nomatch.yaml`
+- `pat/kustomization.yaml`
+- `pat/kustomization.yaml`
+- `pat/kustomization.yaml`
+- `overlays/dev/kustomization.yaml`
+- `overlays/prod/kustomization.yaml`
+- `overlays/prod/limits.yaml`
+- `overlays/prod-eu/notes.yaml`
+- `overlays/prod-eu/kustomization.yaml`
+- `base/deployment.yaml`
+- `base/kustomization.yaml`
+- `components/cache/redis.yaml`
+- `components/cache/kustomization.yaml`
+- `components/metrics/kustomization.yaml`
+- `overlays/cached/kustomization.yaml`
+- `overlays/full/kustomization.yaml`
+- `overlays/wrong/kustomization.yaml`
+- `tf/kustomization.yaml`
+- `sorted/kustomization.yaml`
+- `rep/kustomization.yaml`
+- `vv/kustomization.yaml`
+- `hc/kustomization.yaml`
+- `bm/kustomization.yaml`
+- `cr/app.yaml`
+- `cr/kustomization.yaml`
+- `cr/crd.yaml`
+- `cr/names.yaml`
+- `cr/kustomization.yaml`
+- `oa/widget.yaml`
+- `oa/patch.yaml`
+- `oa/schema.json`
+- `krm/gen.yaml`
+- `overlays/staging/kustomization.yaml`
+- `ex3/deployment.yaml`
+- `ex3/kustomization.yaml`
+- `ex4/kustomization.yaml`
+- `components/debug/kustomization.yaml`
+- `ex6/kustomization.yaml`
+
+Notes on this folder:
+
+- Each folder holds the last version of each file that the chapter writes. The chapter rewrites some files many times, one feature at a time; the earlier versions are in the tutorial.
+- The folders `pat`, `made` and `overlays/wrong` are left out, because the chapter ends them on a deliberate error (a patch path that does not exist, a resource that does not exist, a component listed as a resource).
+- `lr` builds only with `--load-restrictor LoadRestrictionsNone`, and `krm` only with `--enable-alpha-plugins --enable-exec` on Linux, as the chapter explains.
+- `hc` builds only with `--enable-helm` and Helm on the PATH. Folders that the chapter fills with `cp`, `kustomize create` or `kustomize edit` (tree, ep, ed, ex2 and the exercise overlays) are left out; their blocks are in the tutorial.

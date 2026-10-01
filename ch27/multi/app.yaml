@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pair-settings
+data:
+  mode: pair
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pair
+spec:
+  selector:
+    app: pair
+  ports:
+    - port: 80
