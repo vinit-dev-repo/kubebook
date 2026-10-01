@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kubebook-ch20-db
+type: Opaque
+stringData:
+  POSTGRES_USER: votes
+  POSTGRES_PASSWORD: kubebook-ch20-secret
+  POSTGRES_DB: votes
+  DATABASE_URL: postgres://votes:kubebook-ch20-secret@kubebook-ch20-db:5432/votes
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: kubebook-ch20-db-data
+spec:
+  accessModes: ["ReadWriteOnce"]
+  resources:
+    requests:
+      storage: 200Mi

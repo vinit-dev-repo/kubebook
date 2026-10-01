@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubebook-ch20-result
+  namespace: kubebook-ch20-ex
+spec:
+  selector:
+    matchLabels:
+      app: kubebook-ch20-result
+  template:
+    metadata:
+      labels:
+        app: kubebook-ch20-result
+    spec:
+      containers:
+        - name: result
+          image: kubebook-ch20-result:1
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: kubebook-ch20-db
+                  key: DATABASE_URL
+          ports:
+            - name: http
+              containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            periodSeconds: 2
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubebook-ch20-result
+  namespace: kubebook-ch20-ex
+spec:
+  selector:
+    app: kubebook-ch20-result
+  ports:
+    - port: 80
+      targetPort: http

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kubebook-ch20-nginx-conf
+data:
+  index.html: |
+    nginx says hello

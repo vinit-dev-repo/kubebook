@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubebook-ch20-ex-web
+  namespace: kubebook-ch20-ex
+spec:
+  selector:
+    matchLabels:
+      app: kubebook-ch20-ex-web
+  template:
+    metadata:
+      labels:
+        app: kubebook-ch20-ex-web
+    spec:
+      containers:
+        - name: web
+          image: kubebook-ch20-webnginx:1
+          env:
+            - name: NGINX_URL
+              value: http://kubebook-ch20-ex-nginx
+          ports:
+            - name: http
+              containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubebook-ch20-ex-web
+  namespace: kubebook-ch20-ex
+spec:
+  selector:
+    app: kubebook-ch20-ex-web
+  ports:
+    - port: 80
+      targetPort: http
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubebook-ch20-ex-nginx
+  namespace: kubebook-ch20-ex
+spec:
+  selector:
+    matchLabels:
+      app: kubebook-ch20-ex-nginx
+  template:
+    metadata:
+      labels:
+        app: kubebook-ch20-ex-nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.28-alpine
+          ports:
+            - name: http
+              containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubebook-ch20-ex-nginx
+  namespace: kubebook-ch20-ex
+spec:
+  selector:
+    app: kubebook-ch20-ex-nginx
+  ports:
+    - port: 80
+      targetPort: http

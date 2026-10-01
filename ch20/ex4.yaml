@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubebook-ch20-redis
+  namespace: kubebook-ch20-ex
+spec:
+  selector:
+    matchLabels:
+      app: kubebook-ch20-redis
+  template:
+    metadata:
+      labels:
+        app: kubebook-ch20-redis
+    spec:
+      containers:
+        - name: redis
+          image: redis:7.4.11-alpine
+          ports:
+            - name: redis
+              containerPort: 6379
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubebook-ch20-redis
+  namespace: kubebook-ch20-ex
+spec:
+  selector:
+    app: kubebook-ch20-redis
+  ports:
+    - port: 6379
+      targetPort: redis
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubebook-ch20-vote
+  namespace: kubebook-ch20-ex
+spec:
+  selector:
+    matchLabels:
+      app: kubebook-ch20-vote
+  template:
+    metadata:
+      labels:
+        app: kubebook-ch20-vote
+    spec:
+      containers:
+        - name: vote
+          image: kubebook-ch20-vote:1
+          env:
+            - name: REDIS_URL
+              value: redis://kubebook-ch20-redis:6379
+          ports:
+            - name: http
+              containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            periodSeconds: 2
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubebook-ch20-vote
+  namespace: kubebook-ch20-ex
+spec:
+  selector:
+    app: kubebook-ch20-vote
+  ports:
+    - port: 80
+      targetPort: http

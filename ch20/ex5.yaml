@@ -1,0 +1,85 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kubebook-ch20-db
+  namespace: kubebook-ch20-ex
+type: Opaque
+stringData:
+  POSTGRES_USER: votes
+  POSTGRES_PASSWORD: kubebook-ch20-secret
+  POSTGRES_DB: votes
+  DATABASE_URL: postgres://votes:kubebook-ch20-secret@kubebook-ch20-db:5432/votes
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubebook-ch20-db
+  namespace: kubebook-ch20-ex
+spec:
+  selector:
+    matchLabels:
+      app: kubebook-ch20-db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: kubebook-ch20-db
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:17.11-alpine
+          envFrom:
+            - secretRef:
+                name: kubebook-ch20-db
+          ports:
+            - name: pg
+              containerPort: 5432
+          readinessProbe:
+            exec:
+              command: ["pg_isready", "-U", "votes"]
+            periodSeconds: 2
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: data
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubebook-ch20-db
+  namespace: kubebook-ch20-ex
+spec:
+  selector:
+    app: kubebook-ch20-db
+  ports:
+    - port: 5432
+      targetPort: pg
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubebook-ch20-worker
+  namespace: kubebook-ch20-ex
+spec:
+  selector:
+    matchLabels:
+      app: kubebook-ch20-worker
+  template:
+    metadata:
+      labels:
+        app: kubebook-ch20-worker
+    spec:
+      containers:
+        - name: worker
+          image: kubebook-ch20-worker:1
+          env:
+            - name: REDIS_URL
+              value: redis://kubebook-ch20-redis:6379
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: kubebook-ch20-db
+                  key: DATABASE_URL
