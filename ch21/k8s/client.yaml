@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubebook-ch21-web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: web
+  template:
+    metadata:
+      labels:
+        component: web
+    spec:
+      containers:
+        - name: web
+          image: kubebook-ch21-client:1
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubebook-ch21-web
+spec:
+  selector:
+    component: web
+  ports:
+    - port: 80
+      targetPort: 80

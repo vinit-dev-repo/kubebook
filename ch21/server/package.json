@@ -1,0 +1,9 @@
+{
+  "name": "kubebook-ch21-api",
+  "version": "1.0.0",
+  "dependencies": {
+    "express": "5.2.1",
+    "pg": "8.23.1",
+    "redis": "5.12.1"
+  }
+}

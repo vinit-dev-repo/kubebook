@@ -1,0 +1,7 @@
+{
+  "name": "kubebook-ch21-worker",
+  "version": "1.0.0",
+  "dependencies": {
+    "redis": "5.12.1"
+  }
+}

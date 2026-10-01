@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head><title>kubebook fib</title></head>
+<body>
+<h1>kubebook fib</h1>
+<form id="f"><label>Index <input id="i" name="index" type="number" min="0" max="40"></label> <button>Submit</button></form>
+<pre id="current"></pre>
+<pre id="all"></pre>
+<script>
+async function refresh() {
+  document.getElementById("current").textContent = await (await fetch("/api/values/current")).text();
+  document.getElementById("all").textContent = await (await fetch("/api/values/all")).text();
+}
+document.getElementById("f").onsubmit = async (e) => {
+  e.preventDefault();
+  await fetch("/api/values", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ index: Number(document.getElementById("i").value) }) });
+  setTimeout(refresh, 1500);
+};
+refresh();
+</script>
+</body>
+</html>

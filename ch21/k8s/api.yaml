@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubebook-ch21-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: api
+  template:
+    metadata:
+      labels:
+        component: api
+    spec:
+      containers:
+        - name: api
+          image: kubebook-ch21-api:1
+          ports:
+            - containerPort: 5000
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 5000
+          env:
+            - name: REDIS_HOST
+              value: kubebook-ch21-redis
+            - name: PGHOST
+              value: kubebook-ch21-postgres
+            - name: PGUSER
+              value: postgres
+            - name: PGDATABASE
+              value: postgres
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: kubebook-ch21-pgpassword
+                  key: PGPASSWORD
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubebook-ch21-api
+spec:
+  selector:
+    component: api
+  ports:
+    - port: 5000
+      targetPort: 5000
