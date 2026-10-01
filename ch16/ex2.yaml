@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch16-ex-pod2
+  namespace: kubebook-ch16-ex
+spec:
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: kubebook-ch16-ex-claim
+  containers:
+    - name: app
+      image: busybox:1.37
+      command: ["sh", "-c", "sleep 3600"]
+      volumeMounts:
+        - name: data
+          mountPath: /data

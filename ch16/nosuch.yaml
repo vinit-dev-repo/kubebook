@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: kubebook-ch16-nosuch
+spec:
+  storageClassName: kubebook-ch16-missing
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch16-nosuchuser
+spec:
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: kubebook-ch16-nosuch
+  containers:
+    - name: app
+      image: busybox:1.37
+      command: ["sh", "-c", "sleep 3600"]
+      volumeMounts:
+        - name: data
+          mountPath: /data

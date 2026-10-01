@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: restored
+spec:
+  storageClassName: example-csi
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  dataSourceRef:
+    apiGroup: snapshot.storage.k8s.io
+    kind: VolumeSnapshot
+    name: my-snapshot
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: cloned
+spec:
+  storageClassName: example-csi
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  dataSourceRef:
+    kind: PersistentVolumeClaim
+    name: restored

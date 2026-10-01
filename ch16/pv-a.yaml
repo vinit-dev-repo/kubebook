@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: kubebook-ch16-pv-a
+spec:
+  storageClassName: kubebook-ch16-manual
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /kubebook-ch16/pv-a
+    type: DirectoryOrCreate

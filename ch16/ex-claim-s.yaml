@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: kubebook-ch16-ex-claim-s
+  namespace: kubebook-ch16-ex
+spec:
+  storageClassName: kubebook-ch16-ex-manual
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 20Mi

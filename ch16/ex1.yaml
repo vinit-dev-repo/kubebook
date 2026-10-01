@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: kubebook-ch16-ex-claim
+  namespace: kubebook-ch16-ex
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 30Mi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch16-ex-pod1
+  namespace: kubebook-ch16-ex
+spec:
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: kubebook-ch16-ex-claim
+  containers:
+    - name: app
+      image: busybox:1.37
+      command: ["sh", "-c", "echo first Pod was here > /data/note.txt; sleep 3600"]
+      volumeMounts:
+        - name: data
+          mountPath: /data

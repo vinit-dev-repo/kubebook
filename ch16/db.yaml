@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: kubebook-ch16-db-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 200Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubebook-ch16-db
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      terminationGracePeriodSeconds: 1
+      nodeSelector:
+        kubernetes.io/hostname: kubebook-ch16-worker
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: kubebook-ch16-db-data
+      containers:
+        - name: app
+          image: busybox:1.37
+          command: ["sh", "-c", "echo started by $HOSTNAME >> /data/log.txt; sleep 3600"]
+          volumeMounts:
+            - name: data
+              mountPath: /data
+              subPath: dbdata

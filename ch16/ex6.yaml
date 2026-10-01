@@ -1,0 +1,58 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: kubebook-ch16-ex-local
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: WaitForFirstConsumer
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: kubebook-ch16-ex-disk
+spec:
+  storageClassName: kubebook-ch16-ex-local
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  local:
+    path: /kubebook-ch16/ex-disk
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values: ["kubebook-ch16-worker"]
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: kubebook-ch16-ex-claim-l
+  namespace: kubebook-ch16-ex
+spec:
+  storageClassName: kubebook-ch16-ex-local
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Mi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch16-ex-pod6
+  namespace: kubebook-ch16-ex
+spec:
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: kubebook-ch16-ex-claim-l
+  containers:
+    - name: app
+      image: busybox:1.37
+      command: ["sh", "-c", "sleep 3600"]
+      volumeMounts:
+        - name: data
+          mountPath: /data
