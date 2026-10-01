@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch14-named
+spec:
+  nodeName: kubebook-ch14-worker2
+  containers:
+    - name: web
+      image: nginx:1.28-alpine

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: choosy
+  namespace: kubebook-ch14-ex
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: kubebook-ch14-size
+                operator: NotIn
+                values: [small, large]
+  containers:
+    - name: web
+      image: nginx:1.28-alpine

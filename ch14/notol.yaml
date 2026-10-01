@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch14-notol
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: kubebook-ch14-worker3
+  containers:
+    - name: web
+      image: nginx:1.28-alpine

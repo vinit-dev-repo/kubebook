@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubebook-ch14-anti
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kubebook-ch14-anti
+  template:
+    metadata:
+      labels:
+        app: kubebook-ch14-anti
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app: kubebook-ch14-anti
+              topologyKey: kubernetes.io/hostname
+      containers:
+        - name: web
+          image: nginx:1.28-alpine

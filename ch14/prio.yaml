@@ -1,0 +1,22 @@
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: kubebook-ch14-high
+value: 1000000
+globalDefault: false
+description: "urgent work of the book"
+---
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: kubebook-ch14-low
+value: 1000
+description: "batch work of the book"
+---
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: kubebook-ch14-polite
+value: 2000000
+preemptionPolicy: Never
+description: "urgent, but never evicts anyone"

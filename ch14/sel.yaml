@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch14-sel
+spec:
+  nodeSelector:
+    kubebook-ch14-size: large
+  containers:
+    - name: web
+      image: nginx:1.28-alpine

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: PODNAME
+spec:
+  priorityClassName: CLASSNAME
+  nodeSelector:
+    kubernetes.io/hostname: kubebook-ch14-worker2
+  containers:
+    - name: web
+      image: nginx:1.28-alpine
+      resources:
+        requests:
+          cpu: CPUREQ
