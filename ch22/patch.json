@@ -1,0 +1,1 @@
+[{"op":"add","path":"/spec/template/spec/initContainers/0","value":{"name":"wait-for-cache","image":"busybox:1.37","command":["sh","-c","until nc -z -w 2 kubebook-ch22-cache 11211; do echo waiting for the cache; sleep 2; done"]}}]

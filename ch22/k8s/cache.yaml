@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubebook-ch22-cache
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kubebook-ch22-cache
+  template:
+    metadata:
+      labels:
+        app: kubebook-ch22-cache
+    spec:
+      containers:
+        - name: memcached
+          image: memcached:1.6.45-alpine
+          ports:
+            - name: memcached
+              containerPort: 11211
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubebook-ch22-cache
+spec:
+  selector:
+    app: kubebook-ch22-cache
+  ports:
+    - port: 11211
+      targetPort: memcached
