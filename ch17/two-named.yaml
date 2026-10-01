@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubebook-ch17-two
+spec:
+  selector:
+    app: kubebook-ch17-web
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+    - name: alt
+      port: 8080
+      targetPort: 80

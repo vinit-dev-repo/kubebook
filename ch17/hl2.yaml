@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubebook-ch17-hl2
+spec:
+  clusterIP: None
+  publishNotReadyAddresses: true
+  selector:
+    app: kubebook-ch17-web
+  ports:
+    - port: 80
+      targetPort: http

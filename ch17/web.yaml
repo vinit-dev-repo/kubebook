@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubebook-ch17-web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kubebook-ch17-web
+  template:
+    metadata:
+      labels:
+        app: kubebook-ch17-web
+        tier: web
+    spec:
+      volumes:
+        - name: html
+          emptyDir: {}
+      initContainers:
+        - name: write
+          image: busybox:1.37
+          command: ["sh", "-c", "echo \"$POD_NAME on $NODE_NAME\" > /html/index.html"]
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+          volumeMounts:
+            - name: html
+              mountPath: /html
+      containers:
+        - name: web
+          image: nginx:1.28-alpine
+          ports:
+            - name: http
+              containerPort: 80
+          volumeMounts:
+            - name: html
+              mountPath: /usr/share/nginx/html

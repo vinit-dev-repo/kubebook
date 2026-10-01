@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: site-hl
+  namespace: kubebook-ch17-ex
+spec:
+  clusterIP: None
+  selector:
+    app: site
+  ports:
+    - port: 80
+      targetPort: http
