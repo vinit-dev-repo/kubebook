@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: big
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: big
+  template:
+    metadata:
+      labels:
+        app: big
+    spec:
+      containers:
+        - name: big
+          image: nginx:1.28-alpine
+          resources:
+            requests:
+              cpu: "64"
