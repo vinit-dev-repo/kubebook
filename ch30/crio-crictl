@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+exec sudo "$(dirname "$0")/tools/crictl" --runtime-endpoint unix:///var/run/crio/crio.sock --timeout 60s "$@"

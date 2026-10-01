@@ -1,0 +1,7 @@
+{
+  "metadata": {"name": "hello"},
+  "image": {"image": "docker.io/library/busybox:1.37"},
+  "command": ["sh", "-c", "echo hello from cri-o; sleep 3600"],
+  "log_path": "hello.log",
+  "linux": {}
+}

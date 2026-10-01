@@ -1,0 +1,24 @@
+apiVersion: node.k8s.io/v1
+kind: RuntimeClass
+metadata:
+  name: kubebook-ch30-fast
+handler: test-handler
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubebook-ch30-fast
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: kubebook-ch30-fast
+  template:
+    metadata:
+      labels:
+        app: kubebook-ch30-fast
+    spec:
+      runtimeClassName: kubebook-ch30-fast
+      containers:
+        - name: pause
+          image: registry.k8s.io/pause:3.10

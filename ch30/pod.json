@@ -1,0 +1,5 @@
+{
+  "metadata": {"name": "kubebook-ch30-sandbox", "namespace": "default", "uid": "kubebook-ch30-uid", "attempt": 1},
+  "log_directory": "/tmp/kubebook-ch30-logs",
+  "linux": {"security_context": {"namespace_options": {"network": 2}}}
+}
