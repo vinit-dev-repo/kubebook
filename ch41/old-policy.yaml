@@ -1,0 +1,20 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: kubebook-old-style
+spec:
+  validationFailureAction: Enforce
+  background: false
+  rules:
+    - name: only-registry-k8s-io
+      match:
+        any:
+          - resources:
+              kinds: ["Pod"]
+              namespaces: ["kubebook-ch41-kyv"]
+      validate:
+        message: "Images must come from registry.k8s.io."
+        pattern:
+          spec:
+            containers:
+              - image: "registry.k8s.io/*"

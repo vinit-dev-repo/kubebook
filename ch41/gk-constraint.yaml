@@ -1,0 +1,12 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: KubebookAllowedRepos
+metadata:
+  name: only-registry-k8s-io
+spec:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+    namespaces: ["kubebook-ch41-gk"]
+  parameters:
+    repos: ["registry.k8s.io/"]

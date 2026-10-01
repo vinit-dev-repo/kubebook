@@ -1,0 +1,31 @@
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: kubebookallowedrepos
+spec:
+  crd:
+    spec:
+      names:
+        kind: KubebookAllowedRepos
+      validation:
+        openAPIV3Schema:
+          type: object
+          properties:
+            repos:
+              type: array
+              items:
+                type: string
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package kubebookallowedrepos
+
+        violation[{"msg": msg}] {
+          container := input.review.object.spec.containers[_]
+          not startswith_any(container.image, input.parameters.repos)
+          msg := sprintf("image %v is not from an allowed repository %v", [container.image, input.parameters.repos])
+        }
+
+        startswith_any(image, repos) {
+          startswith(image, repos[_])
+        }
