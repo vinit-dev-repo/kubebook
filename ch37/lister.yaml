@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: lister
+  namespace: kubebook-ch37-dev
+spec:
+  serviceAccountName: lister
+  restartPolicy: Never
+  containers:
+    - name: kubectl
+      image: registry.k8s.io/kubectl:v1.36.4
+      command: ["kubectl", "get", "pods", "-n", "kubebook-ch37-dev", "-o", "name"]
