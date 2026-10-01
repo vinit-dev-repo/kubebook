@@ -1,0 +1,21 @@
+apiVersion: skaffold/v4beta14
+kind: Config
+metadata:
+  name: kubebook-ch28
+build:
+  artifacts:
+    - image: kubebook-ch28-web
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "html/**"
+            dest: /usr/share/nginx/html
+            strip: html/
+  local:
+    push: false
+manifests:
+  rawYaml:
+    - k8s/web.yaml
+deploy:
+  kubectl: {}

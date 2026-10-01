@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch28-client
+spec:
+  terminationGracePeriodSeconds: 1
+  containers:
+    - name: client
+      image: nginx:1.28-alpine
+      command: ["sleep", "3600"]
