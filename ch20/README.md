@@ -14,6 +14,7 @@ Files this chapter writes in its blocks, extracted byte for byte from the certif
 - `vote/package.json`
 - `worker/package.json`
 - `result/package.json`
+- `vote/Dockerfile`, `worker/Dockerfile`, `result/Dockerfile` (the chapter writes them in one loop; the worker's runs `worker.mjs`)
 - `voting.yaml`
 - `ex2.yaml`
 - `ex3.yaml`

@@ -9,6 +9,7 @@ Files this chapter writes in its blocks, extracted byte for byte from the certif
 - `server/index.js`
 - `client/index.html`
 - `client/Dockerfile`
+- `server/Dockerfile`, `worker/Dockerfile` (the chapter writes them in one loop)
 - `k8s/api.yaml`
 - `k8s/client.yaml`
 - `k8s/postgres.yaml`
