@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: api-cert
+  namespace: default
+spec:
+  secretName: api-tls
+  dnsNames:
+    - api.kubebook.test
+  issuerRef:
+    name: kubebook-ca
+    kind: ClusterIssuer
+    group: cert-manager.io

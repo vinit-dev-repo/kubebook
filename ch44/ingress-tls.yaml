@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: web
+  namespace: kubebook-ch44-web
+  annotations:
+    cert-manager.io/cluster-issuer: kubebook-ca
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts: ["web.kubebook.test"]
+      secretName: web-tls
+  rules:
+    - host: web.kubebook.test
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web
+                port:
+                  number: 80
