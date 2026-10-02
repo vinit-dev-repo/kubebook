@@ -1,0 +1,4 @@
+apiVersion: v2
+name: <CHARTNAME>
+description: A chart made from the kubebook starter
+version: 0.1.0
