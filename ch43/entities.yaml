@@ -1,0 +1,12 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: other-egress
+  namespace: kubebook-ch43-cil
+spec:
+  endpointSelector:
+    matchLabels:
+      app: other
+  egress:
+    - toEntities:
+        - cluster

@@ -1,0 +1,16 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: web-deny-other
+  namespace: kubebook-ch43-cil
+spec:
+  endpointSelector:
+    matchLabels:
+      app: web
+  ingress:
+    - fromEntities:
+        - cluster
+  ingressDeny:
+    - fromEndpoints:
+        - matchLabels:
+            app: other

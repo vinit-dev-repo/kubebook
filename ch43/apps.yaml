@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web
+  namespace: kubebook-ch43-cil
+  labels:
+    app: web
+spec:
+  terminationGracePeriodSeconds: 1
+  containers:
+    - name: web
+      image: registry.k8s.io/e2e-test-images/agnhost:2.53
+      args: ["netexec", "--http-port=8080"]
+      ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+  namespace: kubebook-ch43-cil
+spec:
+  selector:
+    app: web
+  ports:
+    - port: 8080
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: client
+  namespace: kubebook-ch43-cil
+  labels:
+    app: client
+spec:
+  terminationGracePeriodSeconds: 1
+  containers:
+    - name: client
+      image: busybox:1.37
+      command: ["sleep", "3600"]
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: other
+  namespace: kubebook-ch43-cil
+  labels:
+    app: other
+spec:
+  terminationGracePeriodSeconds: 1
+  containers:
+    - name: other
+      image: busybox:1.37
+      command: ["sleep", "3600"]
