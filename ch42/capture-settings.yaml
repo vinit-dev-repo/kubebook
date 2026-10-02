@@ -1,0 +1,6 @@
+falco:
+  capture:
+    enabled: true
+    path_prefix: /tmp/kubebook-capture
+    mode: rules
+    default_duration: 5000
