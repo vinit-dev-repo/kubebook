@@ -4,7 +4,7 @@ omitStages:
   - RequestReceived
 rules:
   - level: None
-    users: ["system:kube-proxy"]
+    users: ["system:serviceaccount:kube-system:kube-proxy"]
   - level: None
     resources:
       - group: ""
