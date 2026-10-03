@@ -1,0 +1,3 @@
+    - mountPath: /etc/kubernetes/sched-config.yaml
+      name: sched-config
+      readOnly: true

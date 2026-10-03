@@ -8,6 +8,10 @@ Files this chapter writes in its blocks, extracted byte for byte from the certif
 - `wait-static.sh`
 - `anon.sh`
 - `kubebook-authn.yaml`
+- `sched-config.yaml`
+- `sched-mount.txt`
+- `sched-volume.txt`
+- `sched-on.sh`
 - `plain.sh`
 - `pki.sh`
 - `kubebook-ch39-etcd.service`
@@ -18,6 +22,10 @@ Files this chapter writes in its blocks, extracted byte for byte from the certif
 - `audit-volumes.txt`
 - `audit-on.sh`
 - `read-audit.sh`
+- `kubebook-static.yaml`
+- `bypass-policy.yaml`
+- `kubebook-etcd-read.sh`
+- `kubebook-sock.yaml`
 - `ex-audit-policy.yaml`
 - `ex-read.sh`
 - `ca2.sh`

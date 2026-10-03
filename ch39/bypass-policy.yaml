@@ -1,0 +1,11 @@
+apiVersion: audit.k8s.io/v1
+kind: Policy
+omitStages:
+  - RequestReceived
+rules:
+  - level: Metadata
+    namespaces: ["kubebook-ch39-bypass"]
+    resources:
+      - group: ""
+        resources: ["pods", "pods/exec", "secrets"]
+  - level: None
