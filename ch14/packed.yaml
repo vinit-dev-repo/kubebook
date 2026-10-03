@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: NAME
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: NAME
+  template:
+    metadata:
+      labels:
+        app: NAME
+    spec:
+      schedulerName: SCHED
+      containers:
+        - name: web
+          image: nginx:1.28-alpine
+          resources:
+            requests:
+              cpu: CPUREQ

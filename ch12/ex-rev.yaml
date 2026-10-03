@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: rev
+  namespace: kubebook-ch12-ex
+spec:
+  selector:
+    matchLabels:
+      app: rev
+  template:
+    metadata:
+      labels:
+        app: rev
+    spec:
+      terminationGracePeriodSeconds: 1
+      containers:
+        - name: rev
+          image: busybox:1.37
+          command: ["sh", "-c", "echo level $LEVEL; sleep 3600"]
+          env:
+            - name: LEVEL
+              value: a

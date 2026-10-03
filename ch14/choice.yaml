@@ -1,0 +1,17 @@
+apiVersion: resource.k8s.io/v1
+kind: ResourceClaim
+metadata:
+  name: choice
+  namespace: kubebook-ch14-dra
+spec:
+  devices:
+    requests:
+      - name: gpu
+        firstAvailable:
+          - name: huge
+            deviceClassName: gpu.example.com
+            selectors:
+              - cel:
+                  expression: "device.capacity['gpu.example.com'].memory.compareTo(quantity('160Gi')) >= 0"
+          - name: any
+            deviceClassName: gpu.example.com

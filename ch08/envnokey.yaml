@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch08-nokey
+spec:
+  restartPolicy: Never
+  initContainers:
+    - name: writer
+      image: busybox:1.37
+      command: ["sh", "-c", "printf \"A='1'\\n\" > /cfg/db.env"]
+      volumeMounts:
+        - name: cfg
+          mountPath: /cfg
+  containers:
+    - name: app
+      image: busybox:1.37
+      command: ["sh", "-c", "echo B=[$B]"]
+      env:
+        - name: B
+          valueFrom:
+            fileKeyRef:
+              volumeName: cfg
+              path: db.env
+              key: B
+              optional: false
+  volumes:
+    - name: cfg
+      emptyDir: {}

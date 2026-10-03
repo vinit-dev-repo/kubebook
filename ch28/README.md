@@ -8,6 +8,10 @@ Files this chapter writes in its blocks, extracted byte for byte from the certif
 - `app/k8s/web.yaml`
 - `app/skaffold.yaml`
 - `admin-user.yaml`
+- `plugin-src/kubebook_pods.sh`
+- `plugins/kubectl-kubebook_pods.cmd`
+- `plugins/kubectl-version.cmd`
 - `app/skaffold-css.yaml`
 - `app/k8s/web-two.yaml`
-- `app/html/index.html` and `app/html/style.css` (the first versions; the chapter writes them with `printf` and then changes them)
+- `plugin-src/kubebook_hello.sh`
+- `plugins/kubectl-kubebook-hello.cmd`

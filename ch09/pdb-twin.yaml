@@ -1,0 +1,9 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: kubebook-ch09-guarded-twin
+spec:
+  maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: kubebook-ch09-guarded

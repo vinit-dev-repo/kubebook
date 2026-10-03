@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch05-alone
+spec:
+  restartPolicy: Never
+  containers:
+    - name: app
+      image: busybox:1.37
+      command: ["sleep", "3601"]
+    - name: tool
+      image: busybox:1.37
+      command: ["sleep", "3600"]
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch05-seen
+spec:
+  shareProcessNamespace: true
+  restartPolicy: Never
+  containers:
+    - name: app
+      image: busybox:1.37
+      command: ["sh", "-c", "echo kept-in-app > /note.txt; exec sleep 3601"]
+      env:
+        - name: DEMO_PASSWORD
+          value: kubebook-ch05-secret
+    - name: tool
+      image: busybox:1.37
+      command: ["sleep", "3600"]

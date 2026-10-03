@@ -1,0 +1,13 @@
+apiVersion: resource.k8s.io/v1
+kind: ResourceClaim
+metadata:
+  name: inspect-all
+  namespace: kubebook-ch14-dra
+spec:
+  devices:
+    requests:
+      - name: gpus
+        exactly:
+          deviceClassName: gpu.example.com
+          allocationMode: All
+          adminAccess: true

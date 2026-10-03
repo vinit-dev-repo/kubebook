@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kubebook-ch04-ssa
+data:
+  color: red
+  size: big

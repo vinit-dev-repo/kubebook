@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubebook-ch09-stuck
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kubebook-ch09-stuck
+  template:
+    metadata:
+      labels:
+        app: kubebook-ch09-stuck
+    spec:
+      containers:
+        - name: web
+          image: nginx:1.28-alpine
+          readinessProbe:
+            exec:
+              command: ["false"]
+            periodSeconds: 2
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: kubebook-ch09-stuck
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: kubebook-ch09-stuck

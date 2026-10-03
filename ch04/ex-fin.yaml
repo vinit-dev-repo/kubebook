@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kubebook-ch04-ex-fin
+  finalizers:
+    - example.com/kubebook-ch04-ex-hold
+data:
+  k: v

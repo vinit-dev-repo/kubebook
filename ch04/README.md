@@ -4,6 +4,13 @@ Files this chapter writes in its blocks, extracted byte for byte from the certif
 
 - `pod.yaml`
 - `bad4.yaml`
+- `ssa.yaml`
+- `ssa-b.yaml`
+- `ssa-size.yaml`
+- `ssa-b2.yaml`
 - `app/deployment.yaml`
 - `app/service.yaml`
+- `fin.yaml`
 - `ex-pod.yaml`
+- `ex-ssa.yaml`
+- `ex-fin.yaml`

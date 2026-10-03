@@ -12,6 +12,14 @@ Files this chapter writes in its blocks, extracted byte for byte from the certif
 - `ready.yaml`
 - `hl2.yaml`
 - `hl.yaml`
+- `echo.yaml`
+- `icmp.yaml`
+- `sctp.yaml`
+- `req.yaml`
+- `kind-dual.yaml`
+- `mask.sh`
+- `dual-apps.yaml`
+- `dual-svcs.yaml`
 - `np.yaml`
 - `check.sh`
 - `ex-site.yaml`
@@ -20,3 +28,6 @@ Files this chapter writes in its blocks, extracted byte for byte from the certif
 - `ex-np.yaml`
 - `ex-hl.yaml`
 - `ex-gate.yaml`
+- `ex-dns.yaml`
+- `ex-dns2.yaml`
+- `ex-v6.yaml`

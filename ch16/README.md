@@ -13,6 +13,7 @@ Files this chapter writes in its blocks, extracted byte for byte from the certif
 - `pv-a.yaml`
 - `claim-a.yaml`
 - `claim-named.yaml`
+- `shared.yaml`
 - `sc-local.yaml`
 - `pv-local.yaml`
 - `claim-local.yaml`
@@ -23,6 +24,9 @@ Files this chapter writes in its blocks, extracted byte for byte from the certif
 - `nosuch.yaml`
 - `sc-fake.yaml`
 - `claim-fake.yaml`
+- `csidriver.yaml`
+- `attach.yaml`
+- `attach-pod.yaml`
 - `restore.yaml`
 - `block.yaml`
 - `ex1.yaml`
@@ -33,3 +37,5 @@ Files this chapter writes in its blocks, extracted byte for byte from the certif
 - `ex5.yaml`
 - `ex5-pod.yaml`
 - `ex6.yaml`
+- `ex7.yaml`
+- `ex7-pod.yaml`

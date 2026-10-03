@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: who
+  namespace: kubebook-ch46
+spec:
+  serviceAccountName: app
+  restartPolicy: Never
+  containers:
+    - name: who
+      image: amazon/aws-cli:2.36.40
+      command:
+        - sh
+        - -c
+        - |
+          aws sts get-caller-identity --query Arn --output text
+          aws ecr describe-repositories --repository-names kubebook-ch46 --query 'repositories[0].repositoryName' --output text
+          aws ecr describe-images --repository-name kubebook-ch46 2>&1 | tail -1 | cut -c1-120
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi

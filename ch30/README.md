@@ -4,8 +4,11 @@ Files this chapter writes in its blocks, extracted byte for byte from the certif
 
 - `runtimeclasses.yaml`
 - `rc-pods.yaml`
-- `rc-missing.yaml` (refused on purpose: it names a RuntimeClass that does not exist)
+- `rc-missing.yaml`
+- `overhead.yaml`
+- `overhead-self.yaml`
 - `crio-crictl`
 - `pod.json`
 - `ctr.json`
 - `fast.yaml`
+- `ex-overhead.yaml`

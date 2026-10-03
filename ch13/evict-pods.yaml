@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch13-ev-over
+spec:
+  containers:
+    - name: main
+      image: busybox:1.37
+      command: ["sh", "-c", "dd if=/dev/zero of=/dev/shm/fill bs=1M count=40 2> /dev/null; sleep 3600"]
+      resources:
+        requests:
+          memory: 8Mi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch13-ev-under
+spec:
+  containers:
+    - name: main
+      image: busybox:1.37
+      command: ["sleep", "3600"]
+      resources:
+        requests:
+          memory: 64Mi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch13-ev-guaranteed
+spec:
+  containers:
+    - name: main
+      image: busybox:1.37
+      command: ["sleep", "3600"]
+      resources:
+        requests:
+          cpu: 100m
+          memory: 64Mi
+        limits:
+          cpu: 100m
+          memory: 64Mi

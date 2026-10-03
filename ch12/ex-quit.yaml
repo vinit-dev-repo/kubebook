@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: quit
+  namespace: kubebook-ch12-ex
+spec:
+  backoffLimit: 5
+  podFailurePolicy:
+    rules:
+      - action: FailJob
+        onExitCodes:
+          operator: In
+          values: [7]
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: box
+          image: busybox:1.37
+          command: ["sh", "-c", "echo giving up; exit 7"]

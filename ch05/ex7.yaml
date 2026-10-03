@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch05-ex-share
+spec:
+  shareProcessNamespace: true
+  restartPolicy: Never
+  hostAliases:
+    - ip: "192.0.2.50"
+      hostnames:
+        - "db.local"
+  containers:
+    - name: napper
+      image: busybox:1.37
+      command: ["sleep", "3600"]
+    - name: looker
+      image: busybox:1.37
+      command: ["sh", "-c", "sleep 2; ps -o args | grep -c '[s]leep 3600'; grep db.local /etc/hosts"]

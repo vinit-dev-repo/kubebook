@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: kubebook-ch16-csi-N
+spec:
+  storageClassName: kubebook-ch16-attach
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  csi:
+    driver: disk.kubebook.example
+    volumeHandle: disk-N
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: kubebook-ch16-csi-N
+spec:
+  storageClassName: kubebook-ch16-attach
+  volumeName: kubebook-ch16-csi-N
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

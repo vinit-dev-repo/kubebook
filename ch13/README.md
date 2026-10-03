@@ -5,11 +5,19 @@ Files this chapter writes in its blocks, extracted byte for byte from the certif
 - `burstable.yaml`
 - `badunits.yaml`
 - `reqgtlim.yaml`
+- `podlevel.yaml`
+- `podbad.yaml`
+- `podguar.yaml`
+- `dongle1.yaml`
 - `pods.yaml`
 - `oom.yaml`
 - `spin.yaml`
+- `evict-pods.yaml`
+- `late.yaml`
 - `lr.yaml`
 - `quota.yaml`
+- `storage.yaml`
+- `pvc.yaml`
 - `php.yaml`
 - `resize.yaml`
 - `certs/server.conf`
@@ -19,3 +27,6 @@ Files this chapter writes in its blocks, extracted byte for byte from the certif
 - `ex-lr.yaml`
 - `ex-grow.yaml`
 - `ex-small.yaml`
+- `ex-budget.yaml`
+- `ex-lr-st.yaml`
+- `ex-pvc.yaml`

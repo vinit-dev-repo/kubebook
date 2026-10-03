@@ -8,3 +8,9 @@ The chart that this chapter ends with, as its files stand after the last block o
 - `kubebook-ch24-web/templates/deployment.yaml`
 - `kubebook-ch24-web/templates/service.yaml`
 - `kubebook-ch24-web/templates/NOTES.txt`
+
+The section "CRDs in the crds folder, and helm show crds" builds a second chart, also complete here:
+- `kubebook-ch24-crd/Chart.yaml`
+- `kubebook-ch24-crd/crds/backups.yaml` (the final file, with the `retention` field the upgrade adds)
+- `kubebook-ch24-crd/templates/backup.yaml`
+The section on chart conventions makes `kubebook-ch24-conv` with `helm create`, then adds a Role and a RoleBinding; run those blocks to build it.

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: held
+  namespace: kubebook-ch14-ex
+spec:
+  schedulingGates:
+    - name: kubebook.example/wait
+  containers:
+    - name: web
+      image: nginx:1.28-alpine

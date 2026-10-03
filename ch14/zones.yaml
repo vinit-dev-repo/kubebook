@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubebook-ch14-zones
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: kubebook-ch14-zones
+  template:
+    metadata:
+      labels:
+        app: kubebook-ch14-zones
+    spec:
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubebook-ch14-zone
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app: kubebook-ch14-zones
+          matchLabelKeys:
+            - pod-template-hash
+      containers:
+        - name: web
+          image: nginx:1.28-alpine

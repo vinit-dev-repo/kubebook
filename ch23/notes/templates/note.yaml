@@ -1,0 +1,6 @@
+apiVersion: kubebook.example.com/v1
+kind: Note
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  text: {{ .Values.text | quote }}

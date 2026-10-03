@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch14-gated
+spec:
+  schedulingGates:
+    - name: kubebook.example/quota
+    - name: kubebook.example/data
+  containers:
+    - name: web
+      image: nginx:1.28-alpine

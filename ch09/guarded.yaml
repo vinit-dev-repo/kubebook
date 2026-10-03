@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubebook-ch09-guarded
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kubebook-ch09-guarded
+  template:
+    metadata:
+      labels:
+        app: kubebook-ch09-guarded
+    spec:
+      containers:
+        - name: web
+          image: nginx:1.28-alpine
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: kubebook-ch09-guarded
+spec:
+  minAvailable: 3
+  selector:
+    matchLabels:
+      app: kubebook-ch09-guarded

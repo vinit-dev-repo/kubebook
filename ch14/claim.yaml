@@ -1,0 +1,16 @@
+apiVersion: resource.k8s.io/v1
+kind: ResourceClaim
+metadata:
+  name: one-gpu
+  namespace: kubebook-ch14-dra
+spec:
+  devices:
+    requests:
+      - name: gpu
+        exactly:
+          deviceClassName: gpu.example.com
+          selectors:
+            - cel:
+                expression: "device.capacity['gpu.example.com'].memory.compareTo(quantity('40Gi')) >= 0"
+            - cel:
+                expression: "device.attributes['gpu.example.com'].index == 0"

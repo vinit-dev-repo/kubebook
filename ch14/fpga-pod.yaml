@@ -1,0 +1,28 @@
+apiVersion: resource.k8s.io/v1
+kind: ResourceClaim
+metadata:
+  name: NAME
+  namespace: kubebook-ch14-dra
+spec:
+  devices:
+    requests:
+      - name: fpga
+        exactly:
+          deviceClassName: fpga.kubebook.example
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: NAME
+  namespace: kubebook-ch14-dra
+spec:
+  resourceClaims:
+    - name: fpga
+      resourceClaimName: NAME
+  containers:
+    - name: app
+      image: busybox:1.37
+      command: ["sleep", "3600"]
+      resources:
+        claims:
+          - name: fpga

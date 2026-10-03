@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: filer
+  namespace: kubebook-ch08-ex
+spec:
+  restartPolicy: Never
+  initContainers:
+    - name: writer
+      image: busybox:1.37
+      command: ["sh", "-c", "printf \"MODE='fast'\\nTEAM='blue'\\n\" > /cfg/app.env"]
+      volumeMounts:
+        - name: cfg
+          mountPath: /cfg
+  containers:
+    - name: app
+      image: busybox:1.37
+      command: ["sh", "-c", "echo MODE=$MODE"]
+      env:
+        - name: MODE
+          valueFrom:
+            fileKeyRef:
+              volumeName: cfg
+              path: app.env
+              key: MODE
+  volumes:
+    - name: cfg
+      emptyDir: {}

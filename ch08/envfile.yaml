@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch08-envfile
+spec:
+  restartPolicy: Never
+  initContainers:
+    - name: writer
+      image: busybox:1.37
+      command: ["sh", "-c", "printf \"DB_HOST='db.shop.svc'\\nDB_NOTE='two words # not a comment'\\n\" > /cfg/db.env"]
+      volumeMounts:
+        - name: cfg
+          mountPath: /cfg
+  containers:
+    - name: app
+      image: busybox:1.37
+      command: ["sh", "-c", "echo DB_HOST=$DB_HOST; echo NOTE=$NOTE; [ -d /cfg ] || echo no /cfg folder here"]
+      env:
+        - name: DB_HOST
+          valueFrom:
+            fileKeyRef:
+              volumeName: cfg
+              path: db.env
+              key: DB_HOST
+        - name: NOTE
+          valueFrom:
+            fileKeyRef:
+              volumeName: cfg
+              path: db.env
+              key: DB_NOTE
+  volumes:
+    - name: cfg
+      emptyDir: {}

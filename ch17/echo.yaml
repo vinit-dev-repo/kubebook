@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubebook-ch17-echo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: kubebook-ch17-echo
+  template:
+    metadata:
+      labels:
+        app: kubebook-ch17-echo
+    spec:
+      containers:
+        - name: echo
+          image: registry.k8s.io/e2e-test-images/agnhost:2.53
+          args: ["netexec", "--http-port=8080", "--udp-port=8081"]
+          ports:
+            - name: http
+              containerPort: 8080
+            - name: udp
+              containerPort: 8081
+              protocol: UDP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubebook-ch17-echo
+spec:
+  selector:
+    app: kubebook-ch17-echo
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+      appProtocol: http
+    - name: udp
+      port: 8081
+      targetPort: udp
+      protocol: UDP

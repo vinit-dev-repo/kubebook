@@ -1,0 +1,27 @@
+apiVersion: resource.k8s.io/v1
+kind: DeviceClass
+metadata:
+  name: fpga.kubebook.example
+spec:
+  selectors:
+    - cel:
+        expression: "device.driver == 'fpga.kubebook.example'"
+---
+apiVersion: resource.k8s.io/v1
+kind: ResourceSlice
+metadata:
+  name: kubebook-ch14-worker3-fpga
+spec:
+  driver: fpga.kubebook.example
+  nodeName: kubebook-ch14-worker3
+  pool:
+    name: kubebook-ch14-worker3
+    generation: 1
+    resourceSliceCount: 1
+  devices:
+    - name: fpga-a
+      taints:
+        - key: kubebook.example/broken
+          value: "fan"
+          effect: NoSchedule
+    - name: fpga-b

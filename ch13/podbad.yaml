@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch13-podbad
+spec:
+  resources:
+    requests:
+      cpu: 100m
+  containers:
+    - name: main
+      image: busybox:1.37
+      command: ["sleep", "3600"]
+      resources:
+        requests:
+          cpu: 300m

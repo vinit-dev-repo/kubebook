@@ -8,6 +8,8 @@ Files this chapter writes in its blocks, extracted byte for byte from the certif
 - `cm.yaml`
 - `cmenv.yaml`
 - `cmmissing.yaml`
+- `envfile.yaml`
+- `envnokey.yaml`
 - `cmvol.yaml`
 - `cmimm.yaml`
 - `sec.yaml`
@@ -21,3 +23,4 @@ Files this chapter writes in its blocks, extracted byte for byte from the certif
 - `ex-secret.yaml`
 - `ex-lonely.yaml`
 - `ex-shopweb.yaml`
+- `ex-filer.yaml`

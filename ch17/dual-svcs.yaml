@@ -1,0 +1,81 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: single
+spec:
+  selector:
+    app: web
+  ports:
+    - port: 80
+      targetPort: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: only6
+spec:
+  ipFamilies: ["IPv6"]
+  selector:
+    app: web
+  ports:
+    - port: 80
+      targetPort: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dual
+spec:
+  ipFamilyPolicy: PreferDualStack
+  selector:
+    app: web
+  ports:
+    - port: 80
+      targetPort: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dual6
+spec:
+  ipFamilyPolicy: RequireDualStack
+  ipFamilies: ["IPv6", "IPv4"]
+  selector:
+    app: web
+  ports:
+    - port: 80
+      targetPort: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hl
+spec:
+  clusterIP: None
+  selector:
+    app: web
+  ports:
+    - port: 80
+      targetPort: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hl2
+spec:
+  clusterIP: None
+  ipFamilyPolicy: PreferDualStack
+  selector:
+    app: web
+  ports:
+    - port: 80
+      targetPort: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lone
+spec:
+  clusterIP: None
+  ports:
+    - port: 80

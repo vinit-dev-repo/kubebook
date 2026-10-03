@@ -5,4 +5,9 @@ Files this chapter writes in its blocks, extracted byte for byte from the certif
 - `rc.yaml`
 - `rs.yaml`
 - `rs-nosel.yaml`
+- `guarded.yaml`
+- `pdb-twin.yaml`
+- `pdb-max.yaml`
+- `stuck.yaml`
 - `ex-rs.yaml`
+- `ex-shop.yaml`

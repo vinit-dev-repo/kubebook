@@ -1,0 +1,20 @@
+apiVersion: kubescheduler.config.k8s.io/v1
+kind: KubeSchedulerConfiguration
+leaderElection:
+  leaderElect: false
+percentageOfNodesToScore: 100
+profiles:
+  - schedulerName: kubebook-ch14-packer
+    plugins:
+      score:
+        disabled:
+          - name: NodeResourcesBalancedAllocation
+          - name: PodTopologySpread
+    pluginConfig:
+      - name: NodeResourcesFit
+        args:
+          scoringStrategy:
+            type: MostAllocated
+            resources:
+              - name: cpu
+                weight: 1

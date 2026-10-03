@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: even
+  namespace: kubebook-ch14-ex
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: even
+  template:
+    metadata:
+      labels:
+        app: even
+    spec:
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app: even
+      containers:
+        - name: web
+          image: nginx:1.28-alpine

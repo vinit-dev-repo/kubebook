@@ -1,0 +1,51 @@
+apiVersion: resource.k8s.io/v1
+kind: DeviceClass
+metadata:
+  name: dongle.kubebook.example
+spec:
+  selectors:
+    - cel:
+        expression: "device.driver == 'dongle.kubebook.example'"
+---
+apiVersion: resource.k8s.io/v1
+kind: ResourceSlice
+metadata:
+  name: kubebook-ch14-worker2-dongle
+spec:
+  driver: dongle.kubebook.example
+  nodeName: kubebook-ch14-worker2
+  pool:
+    name: kubebook-ch14-worker2
+    generation: 1
+    resourceSliceCount: 1
+  devices:
+    - name: dongle-0
+---
+apiVersion: resource.k8s.io/v1
+kind: ResourceClaim
+metadata:
+  name: dongle
+  namespace: kubebook-ch14-ex
+spec:
+  devices:
+    requests:
+      - name: dongle
+        exactly:
+          deviceClassName: dongle.kubebook.example
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dongle-user
+  namespace: kubebook-ch14-ex
+spec:
+  resourceClaims:
+    - name: dongle
+      resourceClaimName: dongle
+  containers:
+    - name: app
+      image: busybox:1.37
+      command: ["sleep", "3600"]
+      resources:
+        claims:
+          - name: dongle

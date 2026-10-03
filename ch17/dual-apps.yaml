@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: web
+          image: nginx:1.28-alpine
+          ports:
+            - name: http
+              containerPort: 80
+          env:
+            - name: MY_POD_IPS
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIPs
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: client
+spec:
+  terminationGracePeriodSeconds: 1
+  containers:
+    - name: client
+      image: busybox:1.37
+      command: ["sleep", "3600"]

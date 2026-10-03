@@ -6,6 +6,8 @@ Files this chapter writes in its blocks, extracted byte for byte from the certif
 - `sleepers.yaml`
 - `bad-args.yaml`
 - `two.yaml`
+- `sees.yaml`
+- `aliases.yaml`
 - `init.yaml`
 - `initfail.yaml`
 - `sidecar.yaml`
@@ -14,3 +16,4 @@ Files this chapter writes in its blocks, extracted byte for byte from the certif
 - `ex3.yaml`
 - `ex4.yaml`
 - `ex5.yaml`
+- `ex7.yaml`

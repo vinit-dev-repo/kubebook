@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: db
+spec:
+  serviceName: db
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              preference:
+                matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values: ["kubebook-ch29-shut-worker"]
+      tolerations:
+        - key: node-role.kubernetes.io/control-plane
+          effect: NoSchedule
+        - key: node.kubernetes.io/unreachable
+          effect: NoExecute
+          tolerationSeconds: 5
+        - key: node.kubernetes.io/not-ready
+          effect: NoExecute
+          tolerationSeconds: 5
+      containers:
+        - name: pause
+          image: registry.k8s.io/pause:3.10

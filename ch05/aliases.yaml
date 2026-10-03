@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch05-aliases
+spec:
+  restartPolicy: Never
+  hostAliases:
+    - ip: "127.0.0.1"
+      hostnames:
+        - "foo.local"
+        - "bar.local"
+    - ip: "192.0.2.10"
+      hostnames:
+        - "foo.remote"
+  containers:
+    - name: show
+      image: busybox:1.37
+      command: ["sh", "-c", "cat /etc/hosts; for h in bar.local foo.remote; do ping -c 1 -W 1 $h 2>&1 | head -1; done"]
