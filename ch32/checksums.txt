@@ -1,0 +1,4 @@
+69bacd4c4945e07ec08ff44b41e4d767eb21a85cd03e4d183944dd91fe466b69  terraform/vm2/aws/main.tf
+965a7507f2af70685e977613edf019e6a49dd650a7e74bef55148e77f2f9d674  terraform/vm2/azure/main.tf
+6ed1e542c2156ec15e7762a7410f9809b76697b163f2a8d8c3263e35429d90dc  terraform/vm2/gcp/main.tf
+859adfbd3a9f1ffe28c29bd4d6f355be8886beb453fa810d3b086f707356bc40  terraform/vm2/cloud-init.sh.tftpl
