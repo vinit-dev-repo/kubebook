@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: failed-worker
+  namespace: ch09-remaining
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      lab.kubebook/role: failed-worker
+  template:
+    metadata:
+      labels:
+        lab.kubebook/role: failed-worker
+    spec:
+      nodeSelector:
+        kubebook-ch09-node: worker
+      tolerations:
+      - key: node.kubernetes.io/not-ready
+        operator: Exists
+        effect: NoExecute
+        tolerationSeconds: 20
+      - key: node.kubernetes.io/unreachable
+        operator: Exists
+        effect: NoExecute
+        tolerationSeconds: 20
+      containers:
+      - name: keep-running
+        image: busybox:1.37
+        imagePullPolicy: Never
+        command: ["sh", "-c", "sleep 3600"]

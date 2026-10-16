@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch13-invalid-slot
+  namespace: kubebook-ch13-slots
+spec:
+  containers:
+    - name: report
+      image: busybox:1.37
+      command: ['true']
+      resources:
+        requests:
+          workshop.example/report-slot: '0.5'
+        limits:
+          workshop.example/report-slot: '0.5'

@@ -1,0 +1,1 @@
+# ports {{ typeOf .Values.ports }}, first {{ typeOf (index .Values.ports 0) }}, serviceType {{ typeOf .Values.serviceType }}

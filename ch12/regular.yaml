@@ -1,0 +1,31 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kubebook-ch12-regular-helper
+  namespace: kubebook-ch12-lifecycle
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      terminationGracePeriodSeconds: 1
+      containers:
+        - name: task
+          image: busybox:1.37
+          command: ["sh", "/scripts/task.sh"]
+          volumeMounts:
+            - {name: work, mountPath: /work}
+            - {name: scripts, mountPath: /scripts, readOnly: true}
+        - name: helper
+          image: busybox:1.37
+          command: ["sh", "/scripts/helper.sh"]
+          volumeMounts:
+            - {name: work, mountPath: /work}
+            - {name: scripts, mountPath: /scripts, readOnly: true}
+      volumes:
+        - name: work
+          emptyDir: {}
+        - name: scripts
+          configMap:
+            name: kubebook-ch12-receipt-scripts

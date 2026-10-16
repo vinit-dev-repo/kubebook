@@ -1,0 +1,14 @@
+{{- if .Values.rbac.create }}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ include "kubebook-ch24-conv.fullname" . }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ include "kubebook-ch24-conv.fullname" . }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "kubebook-ch24-conv.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
+{{- end }}

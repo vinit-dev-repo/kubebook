@@ -1,0 +1,6 @@
+[
+  {"op":"test","path":"/metadata/uid","value":"$(cat request.uid)"},
+  {"op":"test","path":"/metadata/resourceVersion","value":"$resource_version"},
+  {"op":"test","path":"/spec/request","value":"$(base64 < reviewed-request.pem | tr -d '\n')"},
+  {"op":"add","path":"/status/certificate","value":"$(base64 < signed.crt | tr -d '\n')"}
+]

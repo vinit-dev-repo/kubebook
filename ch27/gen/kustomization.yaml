@@ -14,3 +14,8 @@ secretGenerator:
   - name: web-secret
     literals:
       - password=not-a-real-password
+generatorOptions:
+  disableNameSuffixHash: true
+  immutable: true
+  labels:
+    generated: kustomize

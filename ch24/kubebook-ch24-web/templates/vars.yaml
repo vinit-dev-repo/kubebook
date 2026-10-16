@@ -1,0 +1,7 @@
+{{- $name := .Chart.Name }}
+{{- $label := $name | upper | quote }}
+chart: {{ $name }}
+label: {{ $label }}
+{{- range $i, $p := .Values.ports }}
+port{{ $i }}: {{ $p }}-{{ $name }}
+{{- end }}

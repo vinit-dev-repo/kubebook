@@ -1,0 +1,7 @@
+apiVersion: networking.k8s.io/v1
+kind: ServiceCIDR
+metadata:
+  name: kubebook-ch31-extra-pool
+spec:
+  cidrs:
+    - 10.120.64.0/29

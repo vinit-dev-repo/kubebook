@@ -33,3 +33,74 @@ spec:
   ports:
     - port: 80
       targetPort: http
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubebook-ch20-webnginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: kubebook-ch20-webnginx
+  template:
+    metadata:
+      labels:
+        app: kubebook-ch20-webnginx
+    spec:
+      containers:
+        - name: web
+          image: kubebook-ch20-webnginx:1
+          ports:
+            - name: http
+              containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubebook-ch20-webnginx
+spec:
+  selector:
+    app: kubebook-ch20-webnginx
+  ports:
+    - port: 80
+      targetPort: http
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubebook-ch20-nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: kubebook-ch20-nginx
+  template:
+    metadata:
+      labels:
+        app: kubebook-ch20-nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.28-alpine
+          ports:
+            - name: http
+              containerPort: 80
+          volumeMounts:
+            - name: html
+              mountPath: /usr/share/nginx/html
+      volumes:
+        - name: html
+          configMap:
+            name: kubebook-ch20-nginx-conf
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubebook-ch20-nginx
+spec:
+  selector:
+    app: kubebook-ch20-nginx
+  ports:
+    - port: 80
+      targetPort: http

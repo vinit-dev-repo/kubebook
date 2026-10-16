@@ -1,0 +1,33 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+  extraMounts:
+  - hostPath: "$ADMISSION_NATIVE"
+    containerPath: /etc/kubebook-psa
+    readOnly: true
+  kubeadmConfigPatches:
+  - |
+    apiVersion: kubeadm.k8s.io/v1beta4
+    kind: ClusterConfiguration
+    apiServer:
+      extraArgs:
+      - name: admission-control-config-file
+        value: /etc/kubebook-psa/pod-security.yaml
+      - name: audit-policy-file
+        value: /etc/kubebook-psa/audit.yaml
+      - name: audit-log-path
+        value: /var/log/kubebook-psa/audit.log
+      - name: audit-log-mode
+        value: blocking
+      extraVolumes:
+      - name: kubebook-psa-config
+        hostPath: /etc/kubebook-psa
+        mountPath: /etc/kubebook-psa
+        readOnly: true
+        pathType: Directory
+      - name: kubebook-psa-audit
+        hostPath: /var/log/kubebook-psa
+        mountPath: /var/log/kubebook-psa
+        readOnly: false
+        pathType: DirectoryOrCreate

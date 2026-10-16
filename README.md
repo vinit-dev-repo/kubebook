@@ -59,7 +59,7 @@ The tutorial is one book in nine parts and 48 chapters. Every command in it was 
 
 ## How the folders are made
 
-Each chapter writes its files with `cat > FILE <<'EOF' ... EOF` blocks. A tool reads the certified chapter and copies every such file here, under the chapter's folder, keeping the sub-folders the chapter's `cd` lines imply. Every folder has its own `README.md` listing its files. Nothing is hand-edited here; when a chapter changes, its folder is regenerated.
+Each chapter writes its files in its command blocks, mostly with `cat > FILE <<'EOF' ... EOF`, and also with other end markers, `cat >>` to add to a file, `printf '...' > FILE`, loops and small shell functions. A tool (`_tools/heredoc_repo_files.py` in the tutorial) reads the chapter as one shell session and copies every such file here, under the chapter's folder, keeping the sub-folders the chapter's `cd` lines imply. Where a chapter adds to a file over several blocks, the folder holds the finished file; where it rewrites one, the folder holds the last version. Every folder has its own `README.md`: what the chapter teaches, and for each file the section and the line of the chapter that writes it. Nothing is hand-edited here; when a chapter changes, its folder is regenerated, and a check confirms the folders match the chapters.
 
 ## Names, tags and clean-up
 

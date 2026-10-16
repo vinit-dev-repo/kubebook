@@ -1,0 +1,1 @@
+{{- if gt (int .Values.replicaCount) 5 }}{{ fail "replicaCount above 5" }}{{ end }}

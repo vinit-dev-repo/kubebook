@@ -1,0 +1,19 @@
+{{- $object := .Values.document | fromYaml -}}
+{{- if hasKey $object "Error" }}{{ fail (index $object "Error") }}{{ end -}}
+{{- $data := index $object "data" -}}
+{{- if ne (index $object "kind") "ConfigMap" }}{{ fail "not a ConfigMap" }}{{ end -}}
+{{- if eq .Values.case "unsafe" -}}
+  {{- if not (hasKey $data "bonus") }}{{ fail "expected injected key" }}{{ end -}}
+  {{- if ne (index $data "message") "hello" }}{{ fail "unsafe message changed unexpectedly" }}{{ end -}}
+{{- else -}}
+  {{- if hasKey $data "bonus" }}{{ fail "extra key survived repair" }}{{ end -}}
+  {{- if ne (index $data "message") "hello\n  bonus: enabled" }}{{ fail "message bytes not preserved" }}{{ end -}}
+{{- end -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kubebook-ch24-inspection
+data:
+  case: {{ .Values.case | quote }}
+  extra-key: {{ hasKey $data "bonus" | quote }}
+  original-message-preserved: {{ eq (index $data "message") "hello\n  bonus: enabled" | quote }}

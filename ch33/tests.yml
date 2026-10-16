@@ -1,0 +1,91 @@
+# Declared synthetic input, NOT samples collected from a running cluster.
+# Samples occur at minutes 0, 1, 2, 3, 4, 5, and 6.
+rule_files:
+  - rules.yml
+evaluation_interval: 1m
+tests:
+  - name: value-filter-namespace-and-alert-lifecycle
+    interval: 1m
+    input_series:
+      - series: 'kube_pod_status_ready{namespace="kubebook-ch33",pod="reader",condition="false"}'
+        values: '0 1 1 1 1 0 0'
+      - series: 'kube_pod_status_ready{namespace="kubebook-ch33",pod="steady",condition="false"}'
+        values: '0 0 0 0 0 0 0'
+      - series: 'kube_pod_status_ready{namespace="kubebook-ch33",pod="pulse",condition="false"}'
+        values: '0 1 0 0 0 0 0'
+      - series: 'kube_pod_status_ready{namespace="another-team",pod="reader",condition="false"}'
+        values: '1 1 1 1 1 1 1'
+    promql_expr_test:
+      # A zero-valued series still exists; counting series is not counting failures.
+      - expr: count by (namespace) (kube_pod_status_ready{namespace="kubebook-ch33",condition="false"})
+        eval_time: 0m
+        exp_samples:
+          - labels: '{namespace="kubebook-ch33"}'
+            value: 3
+      - expr: max by (namespace, pod) (kube_pod_status_ready{namespace="kubebook-ch33",condition="false"}) == 1
+        eval_time: 0m
+        exp_samples: []
+      - expr: count by (namespace) (max by (namespace, pod) (kube_pod_status_ready{namespace="kubebook-ch33",condition="false"}) == 1)
+        eval_time: 1m
+        exp_samples:
+          - labels: '{namespace="kubebook-ch33"}'
+            value: 2
+      - expr: max by (namespace, pod) (kube_pod_status_ready{namespace="kubebook-ch33",condition="false"}) == 1
+        eval_time: 2m
+        exp_samples:
+          - labels: '{namespace="kubebook-ch33",pod="reader"}'
+            value: 1
+      - expr: ALERTS{alertname="KubebookPodUnready",alertstate="pending"}
+        eval_time: 1m
+        exp_samples:
+          - labels: 'ALERTS{alertname="KubebookPodUnready",alertstate="pending",namespace="kubebook-ch33",pod="pulse",severity="warning"}'
+            value: 1
+          - labels: 'ALERTS{alertname="KubebookPodUnready",alertstate="pending",namespace="kubebook-ch33",pod="reader",severity="warning"}'
+            value: 1
+      - expr: ALERTS{alertname="KubebookPodUnready",alertstate="pending"}
+        eval_time: 2m
+        exp_samples:
+          - labels: 'ALERTS{alertname="KubebookPodUnready",alertstate="pending",namespace="kubebook-ch33",pod="reader",severity="warning"}'
+            value: 1
+      - expr: ALERTS{alertname="KubebookPodUnready",alertstate="firing"}
+        eval_time: 3m
+        exp_samples:
+          - labels: 'ALERTS{alertname="KubebookPodUnready",alertstate="firing",namespace="kubebook-ch33",pod="reader",severity="warning"}'
+            value: 1
+      - expr: ALERTS{alertname="KubebookPodUnready"}
+        eval_time: 5m
+        exp_samples: []
+    alert_rule_test:
+      - eval_time: 0m
+        alertname: KubebookPodUnready
+        exp_alerts: []
+      - eval_time: 1m
+        alertname: KubebookPodUnready
+        exp_alerts: []
+      - eval_time: 2m
+        alertname: KubebookPodUnready
+        exp_alerts: []
+      - eval_time: 3m
+        alertname: KubebookPodUnready
+        exp_alerts:
+          - exp_labels:
+              namespace: kubebook-ch33
+              pod: reader
+              severity: warning
+            exp_annotations:
+              summary: Pod reader has stayed unready.
+      - eval_time: 4m
+        alertname: KubebookPodUnready
+        exp_alerts:
+          - exp_labels:
+              namespace: kubebook-ch33
+              pod: reader
+              severity: warning
+            exp_annotations:
+              summary: Pod reader has stayed unready.
+      - eval_time: 5m
+        alertname: KubebookPodUnready
+        exp_alerts: []
+      - eval_time: 6m
+        alertname: KubebookPodUnready
+        exp_alerts: []

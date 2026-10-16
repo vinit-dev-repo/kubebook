@@ -1,0 +1,34 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+  extraMounts:
+  - hostPath: "$SOURCE/audit-setup"
+    containerPath: /etc/kubebook-dra
+    readOnly: true
+  kubeadmConfigPatches:
+  - |
+    apiVersion: kubeadm.k8s.io/v1beta4
+    kind: ClusterConfiguration
+    apiServer:
+      extraArgs:
+      - name: feature-gates
+        value: DRAResourceClaimDeviceStatus=true,DRAResourceClaimGranularStatusAuthorization=true
+      - name: audit-policy-file
+        value: /etc/kubebook-dra/audit.yaml
+      - name: audit-log-path
+        value: /var/log/kubebook-dra/audit.log
+      - name: audit-log-mode
+        value: blocking
+      extraVolumes:
+      - name: kubebook-dra-config
+        hostPath: /etc/kubebook-dra
+        mountPath: /etc/kubebook-dra
+        readOnly: true
+        pathType: Directory
+      - name: kubebook-dra-audit
+        hostPath: /var/log/kubebook-dra
+        mountPath: /var/log/kubebook-dra
+        readOnly: false
+        pathType: DirectoryOrCreate
+- role: worker

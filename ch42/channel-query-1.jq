@@ -1,0 +1,1 @@
+[.[] | select(.rule == "Kubebook write below etc in a container" and .output_fields["k8s.pod.name"] == "victim" and .output_fields["k8s.ns.name"] == "default" and .output_fields["fd.name"] == $path)] | length > 0

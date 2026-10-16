@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kubebook-ch12-held
+  namespace: kubebook-ch12-lifecycle
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      terminationGracePeriodSeconds: 1
+      containers:
+        - name: task
+          image: busybox:1.37
+          command:
+            - sh
+            - -ec
+            - |
+              printf 'fresh process\n' > /tmp/started
+              for attempt in $(seq 1 600); do
+                test -f /tmp/release && break
+                sleep 1
+              done
+              test -f /tmp/release
+              printf 'released task finished\n'
+          readinessProbe:
+            exec:
+              command: ["test", "-s", "/tmp/started"]
+            periodSeconds: 1

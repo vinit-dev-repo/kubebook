@@ -1,0 +1,5 @@
+{{- with .Values.features }}
+{{- if and .metrics (not .tls) }}
+metricsWithoutTls: true
+{{- end }}
+{{- end }}

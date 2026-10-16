@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kubebook-ch04-tree-root
+  namespace: default
+data:
+  location: top-level

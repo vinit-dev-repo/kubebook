@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: puller
+spec:
+  serviceAccountName: kubebook-puller
+  containers:
+    - name: c
+      image: $R:5000/kubebook-ch38-hello:1
+      command: ["sleep", "3600"]

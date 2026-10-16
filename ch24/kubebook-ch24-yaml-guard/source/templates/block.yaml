@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kubebook-ch24-block
+data:
+  message: |-
+    {{- .Values.message | nindent 4 }}

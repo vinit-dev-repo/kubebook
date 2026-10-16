@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: exercise-chart
+data:
+  chartName: {{ .Chart.Name | quote }}
+  chartVersion: {{ .Chart.Version | quote }}

@@ -1,0 +1,10 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata: {name: allow-http, namespace: kubebook-ch43-dns}
+spec:
+  endpointSelector: {matchLabels: {app: dns-client}}
+  egress:
+  - toEndpoints:
+    - matchLabels: {app: dns-allowed}
+    toPorts:
+    - ports: [{port: '8080', protocol: TCP}]

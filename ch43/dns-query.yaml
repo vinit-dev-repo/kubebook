@@ -1,0 +1,13 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata: {name: query-filter, namespace: kubebook-ch43-dns}
+spec:
+  endpointSelector: {matchLabels: {app: dns-client}}
+  egress:
+  - toEndpoints:
+    - matchLabels: {io.kubernetes.pod.namespace: kube-system, k8s-app: kube-dns}
+    toPorts:
+    - ports: [{port: '53', protocol: ANY}]
+      rules:
+        dns:
+        - matchName: allowed.kubebook-ch43-dns.svc.cluster.local

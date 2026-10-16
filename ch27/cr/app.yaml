@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: settings
+data:
+  host: db.example
+---
+apiVersion: example.com/v1
+kind: Widget
+metadata:
+  name: w1
+spec:
+  configRef:
+    name: settings

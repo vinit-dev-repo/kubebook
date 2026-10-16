@@ -1,0 +1,6 @@
+name: {{ include "kubebook-ch24-web.fullname" . }}
+upper: {{ include "kubebook-ch24-web.fullname" . | upper }}
+labels:
+  {{- include "kubebook-ch24-web.labels" . | nindent 2 }}
+viaTemplate:
+{{ template "kubebook-ch24-web.labels" . }}

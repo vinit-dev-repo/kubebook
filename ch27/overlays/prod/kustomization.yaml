@@ -15,3 +15,8 @@ images:
     newTag: 1.28-alpine
 patches:
   - path: limits.yaml
+configMapGenerator:
+  - name: web-config
+    behavior: merge
+    literals:
+      - STYLE=loud

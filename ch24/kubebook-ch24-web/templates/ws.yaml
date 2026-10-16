@@ -1,0 +1,12 @@
+plain:
+  {{ if true }}
+  kept: yes
+  {{ end }}
+trimmed:
+  {{- if true }}
+  kept: yes
+  {{- end }}
+labels:
+{{ toYaml .Values.labels | indent 2 }}
+labels2:
+  {{- toYaml .Values.labels | nindent 2 }}

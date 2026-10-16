@@ -1,0 +1,5 @@
+profiles:
+  - name: kubebook-ch28-two
+    manifests:
+      rawYaml:
+        - k8s/web-two.yaml

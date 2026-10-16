@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kubebook-ch17-coarse
+  namespace: kubebook-ch17-job-patterns
+spec:
+  completions: 2
+  parallelism: 2
+  backoffLimit: 0
+  template:
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      containers:
+        - name: worker
+          image: busybox:1.37
+          command: [sh, /app/worker.sh]
+          env:
+            - name: MODE
+              value: once
+            - name: QUEUE_URL
+              value: http://kubebook-ch17-queue:8080/cgi-bin/queue
+          volumeMounts:
+            - name: app
+              mountPath: /app
+              readOnly: true
+      volumes:
+        - name: app
+          configMap:
+            name: kubebook-ch17-job-app

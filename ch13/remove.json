@@ -1,0 +1,5 @@
+[
+  {"op":"test","path":"/metadata/uid","value":"$(cat node.uid)"},
+  {"op":"test","path":"/status/capacity/workshop.example~1report-slot","value":"1"},
+  {"op":"remove","path":"/status/capacity/workshop.example~1report-slot"}
+]

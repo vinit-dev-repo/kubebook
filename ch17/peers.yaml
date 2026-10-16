@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubebook-ch17-scan-peers
+  namespace: kubebook-ch17-job-patterns
+spec:
+  clusterIP: None
+  selector:
+    app: kubebook-ch17-scan-peer
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kubebook-ch17-peers
+  namespace: kubebook-ch17-job-patterns
+spec:
+  completionMode: Indexed
+  completions: 3
+  parallelism: 3
+  backoffLimit: 0
+  template:
+    metadata:
+      labels:
+        app: kubebook-ch17-scan-peer
+    spec:
+      subdomain: kubebook-ch17-scan-peers
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      containers:
+        - name: peer
+          image: busybox:1.37
+          command: [sh, /app/peer.sh]
+          readinessProbe:
+            httpGet:
+              path: /identity
+              port: 8080
+            periodSeconds: 1
+          volumeMounts:
+            - name: app
+              mountPath: /app
+              readOnly: true
+      volumes:
+        - name: app
+          configMap:
+            name: kubebook-ch17-job-app

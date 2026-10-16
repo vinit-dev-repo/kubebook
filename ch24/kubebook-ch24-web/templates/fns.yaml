@@ -1,0 +1,11 @@
+a: {{ .Values.env }}
+b: {{ .Values.env | quote }}
+c: {{ .Values.env | upper | quote }}
+d: {{ .Values.missing | default "fallback" | quote }}
+e: {{ quote .Values.env }}
+f: {{ .Values.replicaCount | add 1 }}
+g: {{ printf "%s-%s" .Release.Name .Values.env }}
+h: {{ .Values.image.tag | quote }}
+i: {{ len .Values.ports }}
+j: {{ 0 | default 2 }}
+k: {{ .Values.env | upper | squote }}

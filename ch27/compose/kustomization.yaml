@@ -1,0 +1,4 @@
+resources:
+  - ../overlays/dev
+  - ../overlays/prod
+namePrefix: cluster-a-

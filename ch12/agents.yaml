@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: kubebook-ch12-node-http
+  namespace: kubebook-ch12-hostport
+spec:
+  selector:
+    matchLabels:
+      app: kubebook-ch12-node-http
+  template:
+    metadata:
+      labels:
+        app: kubebook-ch12-node-http
+    spec:
+      automountServiceAccountToken: false
+      terminationGracePeriodSeconds: 1
+      containers:
+        - name: identity
+          image: busybox:1.37
+          command:
+            - sh
+            - -ec
+            - |
+              mkdir /www
+              printf '%s|%s\n' "$NODE_NAME" "$POD_UID" > /www/identity.txt
+              exec httpd -f -p 8080 -h /www
+          env:
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: POD_UID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.uid
+          ports:
+            - name: identity
+              containerPort: 8080
+              hostPort: 18081
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /identity.txt
+              port: identity
+            periodSeconds: 1

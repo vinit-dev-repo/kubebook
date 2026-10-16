@@ -13,3 +13,5 @@ replacements:
           name: web
         fieldPaths:
           - spec.template.spec.containers.[name=web].env.[name=GREETING].value
+        options:
+          create: true

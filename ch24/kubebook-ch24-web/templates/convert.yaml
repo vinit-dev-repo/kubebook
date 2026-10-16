@@ -1,0 +1,2 @@
+# eq {{ eq (int .Values.replicaCount) 2 }}, d {{ printf "%d" .Values.replicaCount }}, d-int {{ printf "%d" (int .Values.replicaCount) }}
+# big {{ .Values.big }}, big-int64 {{ int64 .Values.big }}

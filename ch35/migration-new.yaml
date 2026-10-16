@@ -1,0 +1,4 @@
+apiVersion: kubebook.example.com/v2
+kind: Greeting
+metadata: {name: migration-new}
+spec: {message: stored after switch, times: 3}

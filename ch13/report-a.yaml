@@ -1,0 +1,35 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kubebook-ch13-report-a
+  namespace: kubebook-ch13-slots
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      containers:
+        - name: report
+          image: busybox:1.37
+          command:
+            - sh
+            - -ec
+            - |
+              printf 'east 2 11\nwest 3 7\n' | awk '{ orders += $2; total += $2*$3 } END { printf "report A: orders=%d total=%d\n", orders, total }' > /tmp/result
+              touch /tmp/holding
+              for attempt in $(seq 1 600); do
+                test -f /tmp/release && break
+                sleep 1
+              done
+              test -f /tmp/release
+              cat /tmp/result
+          readinessProbe:
+            exec:
+              command: [test, -f, /tmp/holding]
+            periodSeconds: 1
+          resources:
+            requests:
+              workshop.example/report-slot: '1'
+            limits:
+              workshop.example/report-slot: '1'

@@ -1,0 +1,11 @@
+{
+  "hosts": ["unix:///run/kubebook-ch41-docker.sock", "tcp://127.0.0.1:2376"],
+  "tlsverify": true,
+  "tlscacert": "$W/certs/ca.pem",
+  "tlscert": "$W/certs/server-cert.pem",
+  "tlskey": "$W/certs/server-key.pem",
+  "iptables": false,
+  "ip6tables": false,
+  "live-restore": true,
+  "no-new-privileges": true
+}

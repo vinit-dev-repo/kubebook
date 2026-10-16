@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch05-alias-target
+  namespace: default
+spec:
+  automountServiceAccountToken: false
+  containers:
+    - name: server
+      image: busybox:1.37
+      command: ["sh", "-c", "mkdir -p /www; printf 'preview-target\n' > /www/index.html; exec httpd -f -p 8080 -h /www"]
+      readinessProbe:
+        httpGet:
+          path: /
+          port: 8080
+        periodSeconds: 1

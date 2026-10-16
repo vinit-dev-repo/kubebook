@@ -1,0 +1,6 @@
+# release {{ .Release.Name }} ns {{ .Release.Namespace }} install {{ .Release.IsInstall }} upgrade {{ .Release.IsUpgrade }} rev {{ .Release.Revision }} service {{ .Release.Service }}
+# chart {{ .Chart.Name }} version {{ .Chart.Version }} app {{ .Chart.AppVersion }} type {{ .Chart.Type }}
+# kube {{ .Capabilities.KubeVersion.Version }} major {{ .Capabilities.KubeVersion.Major }} has-apps-v1 {{ .Capabilities.APIVersions.Has "apps/v1" }}
+# template {{ .Template.Name }} base {{ .Template.BasePath }}
+# file {{ .Files.Get "config/app.txt" }}
+# values {{ .Values.env }} {{ .Values.image.repository }}

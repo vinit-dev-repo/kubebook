@@ -1,0 +1,12 @@
+ports:
+{{- range .Values.ports }}
+  - containerPort: {{ . }}
+{{- end }}
+indexed:
+{{- range $i, $p := .Values.ports }}
+  - {{ $i }}: {{ $p }}
+{{- end }}
+labels:
+{{- range $k, $v := .Values.labels }}
+  {{ $k }}: {{ $v | quote }}
+{{- end }}

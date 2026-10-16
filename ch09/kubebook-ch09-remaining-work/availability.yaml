@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: availability
+  namespace: ch09-remaining
+spec:
+  replicas: 2
+  minReadySeconds: 60
+  progressDeadlineSeconds: 240
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      lab.kubebook/role: availability
+  template:
+    metadata:
+      labels:
+        lab.kubebook/role: availability
+        lab.kubebook/revision: stable
+    spec:
+      containers:
+      - name: app
+        image: busybox:1.37
+        imagePullPolicy: Never
+        command: ["sh", "-c", "sleep 3600"]

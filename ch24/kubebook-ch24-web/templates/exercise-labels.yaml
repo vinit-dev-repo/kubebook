@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: exercise-labels
+  labels:
+  {{- range $k, $v := .Values.labels }}
+    {{ $k }}: {{ $v | quote }}
+  {{- end }}

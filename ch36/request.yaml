@@ -1,0 +1,9 @@
+apiVersion: certificates.k8s.io/v1
+kind: CertificateSigningRequest
+metadata:
+  name: kubebook-ch36-ledger
+spec:
+  request: $(base64 < original-request.pem | tr -d '\n')
+  signerName: training.example/ledger-serving
+  expirationSeconds: 86400
+  usages: [digital signature, key encipherment, server auth]

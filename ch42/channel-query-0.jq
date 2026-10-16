@@ -1,0 +1,1 @@
+[.items[] | select(.spec.nodeName == $node and .metadata.deletionTimestamp == null and .status.phase == "Running" and any(.status.conditions[]?; .type == "Ready" and .status == "True")) | "\(.metadata.name) \(.metadata.uid)"] | if length == 1 then .[0] else error("expected one Ready Falco Pod on victim node") end

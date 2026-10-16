@@ -1,0 +1,3 @@
+apiVersion: v2
+name: kubebook-ch24-yaml-check
+version: 0.1.0

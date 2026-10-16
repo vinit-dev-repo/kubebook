@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubebook-ch13-arithmetic
+  namespace: kubebook-ch13-hpa
+spec:
+  selector:
+    matchLabels:
+      app: kubebook-ch13-arithmetic
+  template:
+    metadata:
+      labels:
+        app: kubebook-ch13-arithmetic
+    spec:
+      automountServiceAccountToken: false
+      containers:
+        - name: arithmetic
+          image: busybox:1.37
+          command: [sh, /settings/worker.sh]
+          resources:
+            requests:
+              cpu: 100m
+              memory: 16Mi
+            limits:
+              cpu: 200m
+              memory: 32Mi
+          readinessProbe:
+            exec:
+              command: [test, -f, /tmp/ready]
+            periodSeconds: 5
+          volumeMounts:
+            - name: settings
+              mountPath: /settings
+              readOnly: true
+      volumes:
+        - name: settings
+          configMap:
+            name: worker-settings

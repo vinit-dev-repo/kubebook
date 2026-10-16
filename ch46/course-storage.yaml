@@ -1,0 +1,14 @@
+apiVersion: eks.amazonaws.com/v1
+kind: NodeClass
+metadata:
+  name: course-storage
+spec:
+  role: $COURSE_ROLE
+  subnetSelectorTerms:
+  - id: ${COURSE_SUBNETS[0]}
+  - id: ${COURSE_SUBNETS[1]}
+  - id: ${COURSE_SUBNETS[2]}
+  securityGroupSelectorTerms:
+  - id: $COURSE_SG
+  ephemeralStorage:
+    size: 40Gi

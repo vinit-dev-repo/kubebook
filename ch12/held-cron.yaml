@@ -1,0 +1,40 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: kubebook-ch12-held-tick
+  namespace: kubebook-ch12-cron-controls
+spec:
+  schedule: '* * * * *'
+  timeZone: Etc/UTC
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 30
+  successfulJobsHistoryLimit: 3
+  jobTemplate:
+    metadata:
+      labels:
+        exercise: cron-controls
+    spec:
+      backoffLimit: 0
+      template:
+        spec:
+          restartPolicy: Never
+          automountServiceAccountToken: false
+          terminationGracePeriodSeconds: 1
+          containers:
+            - name: task
+              image: busybox:1.37
+              command:
+                - sh
+                - -ec
+                - |
+                  touch /tmp/started
+                  for attempt in $(seq 1 600); do
+                    test -f /tmp/release && break
+                    sleep 1
+                  done
+                  test -f /tmp/release
+                  printf 'scheduled task released\n'
+              readinessProbe:
+                exec:
+                  command: [test, -f, /tmp/started]
+                periodSeconds: 1

@@ -1,0 +1,1 @@
+tag: {{ required "image.tag is required, set it with --set image.tag" .Values.image.tag }}

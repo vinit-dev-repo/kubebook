@@ -1,0 +1,7 @@
+falco:
+  stdout_output:
+    enabled: false
+  file_output:
+    enabled: true
+    keep_alive: false
+    filename: /tmp/kubebook-channel.jsonl

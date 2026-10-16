@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kubebook-ch04-dep
+  finalizers:
+    - example.com/kubebook-ch04-hold
+  ownerReferences:
+    - apiVersion: v1
+      kind: ConfigMap
+      name: kubebook-ch04-owner
+      uid: $OWNER_UID
+      blockOwnerDeletion: true
+data:
+  b: "2"

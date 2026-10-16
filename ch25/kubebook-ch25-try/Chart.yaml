@@ -1,0 +1,7 @@
+apiVersion: v2
+name: kubebook-ch25-try
+version: 1.0.0
+dependencies:
+  - name: backend
+    version: "$c"
+    repository: file://../backend

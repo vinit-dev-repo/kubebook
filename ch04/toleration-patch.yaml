@@ -1,0 +1,7 @@
+spec:
+  template:
+    spec:
+      tolerations:
+        - key: kubebook.invalid/current
+          operator: Exists
+          effect: NoSchedule

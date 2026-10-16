@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubebook-ch26-config-roll
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kubebook-ch26-config-roll
+  template:
+    metadata:
+      labels:
+        app: kubebook-ch26-config-roll
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum | quote }}
+    spec:
+      containers:
+        - name: reader
+          image: busybox:1.37
+          imagePullPolicy: IfNotPresent
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              set -e
+              cat /etc/settings/msg
+              printf '\n'
+              exec sleep 3600
+          volumeMounts:
+            - name: settings
+              mountPath: /etc/settings
+      volumes:
+        - name: settings
+          configMap:
+            name: kubebook-ch26-config-roll

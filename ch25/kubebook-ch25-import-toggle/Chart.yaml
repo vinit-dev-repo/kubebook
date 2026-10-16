@@ -1,0 +1,12 @@
+apiVersion: v2
+name: kubebook-ch25-import-toggle
+type: application
+version: 0.1.0
+dependencies:
+  - name: backend
+    version: 0.2.1
+    repository: file://../backend
+    condition: backend.enabled
+    import-values:
+      - child: service
+        parent: backendService

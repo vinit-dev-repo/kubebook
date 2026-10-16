@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Pod
+metadata: {name: dns-client, namespace: kubebook-ch43-dns, labels: {app: dns-client}}
+spec:
+  containers:
+  - name: client
+    image: busybox:1.37
+    command: [sleep, '7200']
+---
+apiVersion: v1
+kind: Pod
+metadata: {name: dns-allowed, namespace: kubebook-ch43-dns, labels: {app: dns-allowed}}
+spec:
+  containers:
+  - name: server
+    image: registry.k8s.io/e2e-test-images/agnhost:2.53
+    args: [netexec, '--http-port=8080']
+---
+apiVersion: v1
+kind: Service
+metadata: {name: allowed, namespace: kubebook-ch43-dns}
+spec:
+  selector: {app: dns-allowed}
+  ports: [{port: 8080}]
+---
+apiVersion: v1
+kind: Pod
+metadata: {name: dns-blocked, namespace: kubebook-ch43-dns, labels: {app: dns-blocked}}
+spec:
+  containers:
+  - name: server
+    image: registry.k8s.io/e2e-test-images/agnhost:2.53
+    args: [netexec, '--http-port=8080']
+---
+apiVersion: v1
+kind: Service
+metadata: {name: blocked, namespace: kubebook-ch43-dns}
+spec:
+  selector: {app: dns-blocked}
+  ports: [{port: 8080}]

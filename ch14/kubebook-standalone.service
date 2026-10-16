@@ -1,0 +1,10 @@
+[Unit]
+Description=Kubernetes tutorial standalone kubelet
+After=containerd.service
+Requires=containerd.service
+[Service]
+ExecStartPre=/kind/bin/create-kubelet-cgroup-v2.sh
+ExecStart=/usr/bin/kubelet --config=/opt/kubebook/kubelet.yaml --root-dir=/var/lib/kubebook-kubelet --cert-dir=/var/lib/kubebook-kubelet/pki
+Restart=no
+Slice=kubelet.slice
+Delegate=yes

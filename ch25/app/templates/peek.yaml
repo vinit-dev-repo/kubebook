@@ -1,0 +1,2 @@
+# common.settings: {{ .Values.common.settings | toJson }}
+# settings: {{ .Values.settings | toJson }}

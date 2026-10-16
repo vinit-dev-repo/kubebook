@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch14-toltime
+spec:
+  tolerations:
+    - key: kubebook-ch14-app
+      operator: Exists
+      effect: NoExecute
+      tolerationSeconds: 20
+  nodeSelector:
+    kubernetes.io/hostname: $TNODE
+  containers:
+    - name: web
+      image: nginx:1.28-alpine

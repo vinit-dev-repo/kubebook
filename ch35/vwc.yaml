@@ -1,0 +1,20 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: kubebook-team-label
+webhooks:
+  - name: team-label.kubebook.example.com
+    admissionReviewVersions: [v1]
+    sideEffects: None
+    failurePolicy: Fail
+    timeoutSeconds: 5
+    clientConfig:
+      service: {name: kubebook-webhook, namespace: default, path: /validate, port: 443}
+      caBundle: $CA
+    rules:
+      - apiGroups: [""]
+        apiVersions: [v1]
+        operations: [CREATE]
+        resources: [pods]
+    namespaceSelector:
+      matchLabels: {kubebook-webhook: "on"}

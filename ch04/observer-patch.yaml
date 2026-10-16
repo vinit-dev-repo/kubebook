@@ -1,0 +1,7 @@
+spec:
+  template:
+    spec:
+      containers:
+        - name: observer
+          image: nginx:1.28-alpine
+          command: ["sleep", "3600"]

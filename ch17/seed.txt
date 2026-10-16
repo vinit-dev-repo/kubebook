@@ -1,0 +1,6 @@
+atlas 12
+fern 8
+harbor 5
+kite 17
+lantern 9
+moss 3

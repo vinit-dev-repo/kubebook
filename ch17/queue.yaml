@@ -1,0 +1,70 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch17-queue
+  namespace: kubebook-ch17-job-patterns
+  labels:
+    app: kubebook-ch17-queue
+spec:
+  automountServiceAccountToken: false
+  containers:
+    - name: queue
+      image: busybox:1.37
+      command:
+        - sh
+        - -ec
+        - |
+          mkdir /state/inflight
+          cp /app/seed.txt /state/pending
+          touch /state/results
+          exec httpd -f -p 8080 -h /app
+      readinessProbe:
+        httpGet:
+          path: /health.txt
+          port: 8080
+        periodSeconds: 1
+      volumeMounts:
+        - name: app
+          mountPath: /app
+          readOnly: true
+        - name: state
+          mountPath: /state
+  volumes:
+    - name: app
+      configMap:
+        name: kubebook-ch17-job-app
+        defaultMode: 0555
+        items:
+          - key: queue.sh
+            path: cgi-bin/queue
+          - key: seed.txt
+            path: seed.txt
+          - key: health.txt
+            path: health.txt
+    - name: state
+      emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubebook-ch17-queue
+  namespace: kubebook-ch17-job-patterns
+spec:
+  selector:
+    app: kubebook-ch17-queue
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubebook-ch17-job-client
+  namespace: kubebook-ch17-job-patterns
+spec:
+  automountServiceAccountToken: false
+  containers:
+    - name: client
+      image: busybox:1.37
+      command: [sleep, '1800']

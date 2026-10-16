@@ -1,0 +1,5 @@
+# env {{ typeOf .Values.env }}, tls {{ typeOf .Values.features.tls }}, replicaCount {{ typeOf .Values.replicaCount }}
+# ports {{ typeOf .Values.ports }}, labels {{ typeOf .Values.labels }}
+# kinds {{ kindOf .Values.ports }} {{ kindOf .Values.labels }} {{ kindOf .Values.replicaCount }}
+# printf {{ printf "%T" .Values.env }} {{ printf "%T" .Values.image.tag }}
+# file {{ typeOf (.Files.GetBytes "config/app.txt") }}, literals {{ typeOf 3 }} {{ typeOf 3.5 }}, missing {{ typeOf .Values.missing }}

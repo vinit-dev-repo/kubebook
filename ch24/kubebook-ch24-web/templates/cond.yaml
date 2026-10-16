@@ -1,0 +1,21 @@
+{{- if eq .Values.env "prod" }}
+replicas: 3
+{{- else if eq .Values.env "dev" }}
+replicas: 1
+{{- else }}
+replicas: 2
+{{- end }}
+{{- if and .Values.features.metrics (not .Values.features.tls) }}
+metricsWithoutTls: true
+{{- end }}
+{{- if or .Values.features.tls .Values.features.metrics }}
+anyFeature: true
+{{- end }}
+{{- if not .Values.features.tls }}
+tls: off
+{{- end }}
+{{- if .Values.missing }}
+missing: set
+{{- else }}
+missing: empty
+{{- end }}

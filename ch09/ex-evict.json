@@ -1,0 +1,1 @@
+{"apiVersion": "policy/v1", "kind": "Eviction", "metadata": {"name": "$SHOPPOD", "namespace": "kubebook-ch09-ex"}}

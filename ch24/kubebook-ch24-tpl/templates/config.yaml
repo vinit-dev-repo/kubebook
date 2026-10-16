@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kubebook-ch24-tpl
+data:
+  ordinary: {{ .Values.greeting | quote }}
+  evaluated: {{ tpl .Values.greeting . | quote }}

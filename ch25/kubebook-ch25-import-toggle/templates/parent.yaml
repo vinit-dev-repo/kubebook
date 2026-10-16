@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-import-check
+data:
+  imported: {{ hasKey .Values "backendService" | quote }}
+  servicePort: {{ get (.Values.backendService | default dict) "port" | default "unavailable" | quote }}

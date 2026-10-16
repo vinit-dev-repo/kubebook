@@ -1,0 +1,1 @@
+owner: {{ include "kubebook-ch24-web.owner" . | upper }}

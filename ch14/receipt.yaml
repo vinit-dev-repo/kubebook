@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ridge-receipt
+  namespace: default
+spec:
+  hostNetwork: true
+  dnsPolicy: Default
+  terminationGracePeriodSeconds: 2
+  containers:
+  - name: receipt
+    image: docker.io/library/busybox:1.37
+    imagePullPolicy: Never
+    command: [sh, -c]
+    args:
+    - mkdir -p /tmp/site; printf '$RECEIPT\\n' > /tmp/site/index.html; exec httpd -f -p 127.0.0.1:18080 -h /tmp/site

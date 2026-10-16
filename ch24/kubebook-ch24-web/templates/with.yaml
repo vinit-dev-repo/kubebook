@@ -1,0 +1,9 @@
+{{- with .Values.labels }}
+team: {{ .team }}
+release: {{ $.Release.Name }}
+{{- end }}
+{{- with .Values.nothing }}
+never: shown
+{{- else }}
+nothing: empty
+{{- end }}

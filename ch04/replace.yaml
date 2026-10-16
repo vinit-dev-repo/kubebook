@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: $name
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: $name
+  template:
+    metadata:
+      labels:
+        app: $name
+    spec:
+      containers:
+        - name: server
+          image: nginx:1.28-alpine
+      tolerations:
+        - key: kubebook.invalid/legacy
+          operator: Exists
+          effect: NoSchedule
