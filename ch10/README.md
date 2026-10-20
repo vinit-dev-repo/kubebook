@@ -1,6 +1,6 @@
-# 10 - Deployment Strategies - Recreate, Blue-Green and Canary
+# 10 - Strategies, Recreate and RollingUpdate; Blue-Green, Canary and Choosing a Strategy
 
-The files the chapter **10 - Deployment Strategies - Recreate, Blue-Green and Canary** of the Kubernetes tutorial writes in its command blocks, copied byte for byte from the chapter. The blocks write them into the work folder `~/kubebook-ch10`; cloning this folder there gives the same files. The chapter explains every line; the table says where each file is written: the section heading and the line where the file's text starts.
+The files the chapter **10**, in its parts **10.1 - Strategies, Recreate and RollingUpdate** and **10.2 - Blue-Green, Canary and Choosing a Strategy**, of the Kubernetes tutorial writes in its command blocks, copied byte for byte from the chapter. The blocks write them into the work folder `~/kubebook-ch10`; cloning this folder there gives the same files. The chapter explains every line; the table says where each file is written: the part, the section heading and the line in that part where the file's text starts.
 
 ## What this chapter teaches
 
@@ -15,11 +15,11 @@ The files the chapter **10 - Deployment Strategies - Recreate, Blue-Green and Ca
 
 | File | Where it is in the chapter | Note |
 |---|---|---|
-| `app.tmpl` | What a strategy is, and Recreate › In practice (line 94) |  |
-| `make.sh` | What a strategy is, and Recreate › In practice (line 129) |  |
-| `bump.sh` | What a strategy is, and Recreate › In practice (line 134) |  |
-| `svc.yaml` | What a strategy is, and Recreate › In practice (line 147) |  |
-| `versions.sh` | What a strategy is, and Recreate › In practice (line 158) |  |
-| `watch.sh` | What a strategy is, and Recreate › In practice (line 168) |  |
-| `green-test.yaml` | Blue-green: two Deployments and one Service pointer › In practice (line 404) |  |
-| `endpoints.sh` | Canary: a small share by Pod count › In practice (line 508) |  |
+| `app.tmpl` | 10.1 › What a strategy is, and Recreate › In practice (line 97) |  |
+| `make.sh` | 10.1 › What a strategy is, and Recreate › In practice (line 132) |  |
+| `bump.sh` | 10.1 › What a strategy is, and Recreate › In practice (line 137) |  |
+| `svc.yaml` | 10.1 › What a strategy is, and Recreate › In practice (line 154) |  |
+| `versions.sh` | 10.1 › What a strategy is, and Recreate › In practice (line 165) |  |
+| `watch.sh` | 10.1 › What a strategy is, and Recreate › In practice (line 175) |  |
+| `green-test.yaml` | 10.2 › Blue-green: two Deployments and one Service pointer › In practice (line 104) |  |
+| `endpoints.sh` | 10.2 › Canary: a small share by Pod count › In practice (line 215) |  |

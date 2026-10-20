@@ -1,6 +1,6 @@
-# 31 - Cluster Networking - CNI, Pod and Service Networking, and CoreDNS
+# 31 - Linux Networking by Hand, the Network Model and CNI, Pods across Nodes and IPAM; Service Rules, Ports, CoreDNS and Calico
 
-The files the chapter **31 - Cluster Networking - CNI, Pod and Service Networking, and CoreDNS** of the Kubernetes tutorial writes in its command blocks, copied byte for byte from the chapter. The blocks write them into the work folder `~/kubebook-ch31`; cloning this folder there gives the same files. The chapter explains every line; the table says where each file is written: the section heading and the line where the file's text starts.
+The files the chapter **31**, in its parts **31.1 - Linux Networking by Hand, the Network Model and CNI, Pods across Nodes and IPAM** and **31.2 - Service Rules, Ports, CoreDNS and Calico**, of the Kubernetes tutorial writes in its command blocks, copied byte for byte from the chapter. The blocks write them into the work folder `~/kubebook-ch31`; cloning this folder there gives the same files. The chapter explains every line; the table says where each file is written: the part, the section heading and the line in that part where the file's text starts.
 
 ## What this chapter teaches
 
@@ -17,13 +17,13 @@ The files the chapter **31 - Cluster Networking - CNI, Pod and Service Networkin
 
 | File | Where it is in the chapter | Note |
 |---|---|---|
-| `kind.yaml` | Linux networking inside a node: routes, namespaces, veth pairs, a bridge and NAT › In practice (line 85) |  |
-| `mask.sed` | Pod networking across nodes › In practice (line 551) |  |
-| `pods.yaml` | Pod networking across nodes › In practice (line 568) |  |
-| `static-svc.yaml` | IPAM: who hands out which address › In practice (line 761) |  |
-| `extra-pool.yaml` | IPAM: who hands out which address › Extend the pool, then retire the added range (line 837) |  |
-| `reserved-service.yaml` | IPAM: who hands out which address › Extend the pool, then retire the added range (line 871) |  |
-| `kind-calico.yaml` | Changing the network plugin: Calico › In practice (line 1386) |  |
-| `kind-ex.yaml` | Try it yourself (line 1607) |  |
-| `ex-pods.yaml` | Try it yourself (line 1636) |  |
-| `ex-new.yaml` | Try it yourself (line 1730) |  |
+| `kind.yaml` | 31.1 › Linux networking inside a node: routes, namespaces, veth pairs, a bridge and NAT › In practice (line 82) |  |
+| `mask.sed` | 31.1 › Pod networking across nodes › In practice (line 558) |  |
+| `pods.yaml` | 31.1 › Pod networking across nodes › In practice (line 574) |  |
+| `static-svc.yaml` | 31.1 › IPAM: who hands out which address › In practice (line 777) |  |
+| `extra-pool.yaml` | 31.1 › IPAM: who hands out which address › Extend the pool, then retire the added range (line 851) |  |
+| `reserved-service.yaml` | 31.1 › IPAM: who hands out which address › Extend the pool, then retire the added range (line 884) |  |
+| `kind-calico.yaml` | 31.2 › Changing the network plugin: Calico › In practice (line 456) |  |
+| `kind-ex.yaml` | 31.2 › Try it yourself (line 677) |  |
+| `ex-pods.yaml` | 31.2 › Try it yourself (line 706) |  |
+| `ex-new.yaml` | 31.2 › Try it yourself (line 800) |  |

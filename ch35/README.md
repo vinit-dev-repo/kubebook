@@ -1,6 +1,6 @@
-# 35 - Extending Kubernetes - Custom Resources, Controllers, Operators, Admission Controllers and API Versions
+# 35 - Custom Resources, Custom Controllers and Operators; Admission Control, Admission Policies and Webhooks; API Versions and Deprecations
 
-The files the chapter **35 - Extending Kubernetes - Custom Resources, Controllers, Operators, Admission Controllers and API Versions** of the Kubernetes tutorial writes in its command blocks, copied byte for byte from the chapter. The blocks write them into the work folder `~/kubebook-ch35`; cloning this folder there gives the same files. The chapter explains every line; the table says where each file is written: the section heading and the line where the file's text starts.
+The files the chapter **35**, in its parts **35.1 - Custom Resources, Custom Controllers and Operators**, **35.2 - Admission Control, Admission Policies and Webhooks** and **35.3 - API Versions and Deprecations**, of the Kubernetes tutorial writes in its command blocks, copied byte for byte from the chapter. The blocks write them into the work folder `~/kubebook-ch35`; cloning this folder there gives the same files. The chapter explains every line; the table says where each file is written: the part, the section heading and the line in that part where the file's text starts.
 
 ## What this chapter teaches
 
@@ -18,29 +18,29 @@ The files the chapter **35 - Extending Kubernetes - Custom Resources, Controller
 
 | File | Where it is in the chapter | Note |
 |---|---|---|
-| `hello.yaml` | Custom resources and CRDs › In practice (line 112) |  |
-| `crd.yaml` | Custom resources and CRDs › In practice (line 137) |  |
-| `bad1.yaml` | Custom resources and CRDs › In practice (line 239) |  |
-| `bad2.yaml` | Custom resources and CRDs › In practice (line 264) |  |
-| `etcd.sh` | Custom resources and CRDs › In practice (line 326) |  |
-| `controller.py` | Custom controllers › In practice (line 367) |  |
-| `rbac.yaml` | Custom controllers › In practice (line 413) |  |
-| `controller.yaml` | Custom controllers › In practice (line 456) |  |
-| `pair.yaml` | Operators › In practice (line 601) |  |
-| `pvc.yaml` | Admission control › In practice (line 727) |  |
-| `wait-apiserver.sh` | Admission control › In practice (line 759) |  |
-| `vap.yaml` | Admission policies and webhooks › In practice (line 851) |  |
-| `map.yaml` | Admission policies and webhooks › In practice (line 969) |  |
-| `map-fixed.yaml` | Admission policies and webhooks › In practice (line 1025) |  |
-| `webhook.py` | Admission policies and webhooks › Try an external mutating webhook (line 1269) | rewritten later in the chapter |
-| `webhook.yaml` | Admission policies and webhooks › In practice (line 1136) |  |
-| `vwc.yaml` | Admission policies and webhooks › In practice (line 1187) | a template: the shell fills in $VARIABLES when the chapter runs it |
-| `mwc.yaml` | Admission policies and webhooks › Try an external mutating webhook (line 1379) | a template: the shell fills in $VARIABLES when the chapter runs it |
-| `policy.yaml` | Admission policies and webhooks › Change a parameter without rewriting the policy (line 1574) |  |
-| `storage-form.sh` | API versions and deprecations › Move stored Greetings before retiring v1 (line 1907) |  |
-| `migration-old.yaml` | API versions and deprecations › Move stored Greetings before retiring v1 (line 1914) |  |
-| `migration-new.yaml` | API versions and deprecations › Move stored Greetings before retiring v1 (line 1952) |  |
-| `old.yaml` | API versions and deprecations › Convert a removed Deployment API (line 2086) |  |
-| `vap-secret.yaml` | Try it yourself (line 2284) |  |
-| `leak.yaml` | Try it yourself (line 2309) |  |
-| `fine.yaml` | Try it yourself (line 2317) |  |
+| `hello.yaml` | 35.1 › Custom resources and CRDs › In practice (line 111) |  |
+| `crd.yaml` | 35.1 › Custom resources and CRDs › In practice (line 139) |  |
+| `bad1.yaml` | 35.1 › Custom resources and CRDs › In practice (line 239) |  |
+| `bad2.yaml` | 35.1 › Custom resources and CRDs › In practice (line 264) |  |
+| `etcd.sh` | 35.1 › Custom resources and CRDs › In practice (line 330) |  |
+| `controller.py` | 35.1 › Custom controllers › In practice (line 386) |  |
+| `rbac.yaml` | 35.1 › Custom controllers › In practice (line 437) |  |
+| `controller.yaml` | 35.1 › Custom controllers › In practice (line 479) |  |
+| `pair.yaml` | 35.1 › Operators › In practice (line 636) |  |
+| `pvc.yaml` | 35.2 › Admission control › In practice (line 122) |  |
+| `wait-apiserver.sh` | 35.2 › Admission control › In practice (line 162) |  |
+| `vap.yaml` | 35.2 › Admission policies and webhooks › In practice (line 280) |  |
+| `map.yaml` | 35.2 › Admission policies and webhooks › In practice (line 401) |  |
+| `map-fixed.yaml` | 35.2 › Admission policies and webhooks › In practice (line 458) |  |
+| `webhook.py` | 35.2 › Admission policies and webhooks › Try an external mutating webhook (line 713) | rewritten later in the chapter |
+| `webhook.yaml` | 35.2 › Admission policies and webhooks › In practice (line 575) |  |
+| `vwc.yaml` | 35.2 › Admission policies and webhooks › In practice (line 630) | a template: the shell fills in $VARIABLES when the chapter runs it |
+| `mwc.yaml` | 35.2 › Admission policies and webhooks › Try an external mutating webhook (line 823) | a template: the shell fills in $VARIABLES when the chapter runs it |
+| `policy.yaml` | 35.2 › Admission policies and webhooks › Change a parameter without rewriting the policy (line 1021) |  |
+| `storage-form.sh` | 35.3 › API versions and deprecations › Move stored Greetings before retiring v1 (line 199) |  |
+| `migration-old.yaml` | 35.3 › API versions and deprecations › Move stored Greetings before retiring v1 (line 206) |  |
+| `migration-new.yaml` | 35.3 › API versions and deprecations › Move stored Greetings before retiring v1 (line 244) |  |
+| `old.yaml` | 35.3 › API versions and deprecations › Convert a removed Deployment API (line 386) |  |
+| `vap-secret.yaml` | 35.3 › Try it yourself (line 586) |  |
+| `leak.yaml` | 35.3 › Try it yourself (line 611) |  |
+| `fine.yaml` | 35.3 › Try it yourself (line 619) |  |

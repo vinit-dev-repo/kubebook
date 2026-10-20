@@ -1,6 +1,6 @@
-# 19 - Network Policies - Who May Talk to Whom
+# 19 - The Open Network, Enforcement and the Default Deny; Allow Rules, Selectors and AND versus OR; Egress, DNS and the Metadata Address; Edges, Debugging and the Exercises
 
-The files the chapter **19 - Network Policies - Who May Talk to Whom** of the Kubernetes tutorial writes in its command blocks, copied byte for byte from the chapter. The blocks write them into the work folder `~/kubebook-ch19`; cloning this folder there gives the same files. The chapter explains every line; the table says where each file is written: the section heading and the line where the file's text starts.
+The files the chapter **19**, in its parts **19.1 - The Open Network, Enforcement and the Default Deny**, **19.2 - Allow Rules, Selectors and AND versus OR**, **19.3 - Egress, DNS and the Metadata Address** and **19.4 - Edges, Debugging and the Exercises**, of the Kubernetes tutorial writes in its command blocks, copied byte for byte from the chapter. The blocks write them into the work folder `~/kubebook-ch19`; cloning this folder there gives the same files. The chapter explains every line; the table says where each file is written: the part, the section heading and the line in that part where the file's text starts.
 
 ## What this chapter teaches
 
@@ -12,39 +12,40 @@ The files the chapter **19 - Network Policies - Who May Talk to Whom** of the Ku
 - Write egress rules with the DNS rule first, and read how `policyTypes` is filled in
 - Keep Pods away from the node's metadata address with an egress `ipBlock` and an `except`, on a stand-in made on one node
 - Meet the edges: `hostNetwork` Pods, open connections, four refusals, other network plugins and a debugging checklist
+- Run the seven exercises of the chapter and delete its cluster
 
 ## Files
 
 | File | Where it is in the chapter | Note |
 |---|---|---|
-| `kind.yaml` | Open by default, and who enforces the rules › In practice (line 74) |  |
-| `stage.yaml` | Open by default, and who enforces the rules › In practice (line 106) |  |
-| `try.sh` | Open by default, and who enforces the rules › In practice (line 250) |  |
-| `deny-ingress.yaml` | Isolation and the default deny › In practice (line 330) |  |
-| `deny-ingress-empty.yaml` | Isolation and the default deny › In practice (line 411) |  |
-| `deny-all.yaml` | Isolation and the default deny › In practice (line 440) |  |
-| `allow-front-to-web.yaml` | Allow rules: from, to, ports and how they add up › In practice (line 503) |  |
-| `allow-ops-namespace.yaml` | Allow rules: from, to, ports and how they add up › In practice (line 576) |  |
-| `allow-by-name.yaml` | Allow rules: from, to, ports and how they add up › In practice (line 613) |  |
-| `allow-ipblock.yaml` | Allow rules: from, to, ports and how they add up › In practice (line 646) | a template: the shell fills in $VARIABLES when the chapter runs it |
-| `allow-nothing.yaml` | Allow rules: from, to, ports and how they add up › In practice (line 683) |  |
-| `allow-all-api.yaml` | Allow rules: from, to, ports and how they add up › In practice (line 711) |  |
-| `allow-ops-frontend.yaml` | AND versus OR in a from list › In practice (line 798) |  |
-| `allow-ops-or-backend.yaml` | AND versus OR in a from list › In practice (line 819) |  |
-| `deny-egress-front.yaml` | Egress: DNS first, then the rest › In practice (line 930) |  |
-| `allow-front-egress.yaml` | Egress: DNS first, then the rest › In practice (line 962) |  |
-| `allow-internet.yaml` | Egress: DNS first, then the rest › In practice (line 1036) |  |
-| `ingress-only.yaml` | Egress: DNS first, then the rest › In practice (line 1098) |  |
-| `meta.yaml` | Protecting the node's metadata address › In practice (line 1181) |  |
-| `meta.sh` | Protecting the node's metadata address › In practice (line 1257) |  |
-| `no-metadata.yaml` | Protecting the node's metadata address › In practice (line 1278) |  |
-| `hostnet.yaml` | Edges: hostNetwork, open connections, refusals, other plugins and debugging › In practice (line 1354) |  |
-| `allow-worker2.yaml` | Edges: hostNetwork, open connections, refusals, other plugins and debugging › In practice (line 1391) | a template: the shell fills in $VARIABLES when the chapter runs it |
-| `ex-stage.yaml` | Try it yourself (line 1569) |  |
-| `ex-deny.yaml` | Try it yourself (line 1649) |  |
-| `ex-allow.yaml` | Try it yourself (line 1676) |  |
-| `ex-ops.yaml` | Try it yourself (line 1712) |  |
-| `ex-egress.yaml` | Try it yourself (line 1743) |  |
-| `ex-dns.yaml` | Try it yourself (line 1756) |  |
-| `ex-and.yaml` | Try it yourself (line 1804) |  |
-| `ex-net.yaml` | Try it yourself (line 1844) |  |
+| `kind.yaml` | 19.1 › Open by default, and who enforces the rules › In practice (line 70) |  |
+| `stage.yaml` | 19.1 › Open by default, and who enforces the rules › In practice (line 104) |  |
+| `try.sh` | 19.1 › Open by default, and who enforces the rules › In practice (line 251) |  |
+| `deny-ingress.yaml` | 19.1 › Isolation and the default deny › In practice (line 343) |  |
+| `deny-ingress-empty.yaml` | 19.1 › Isolation and the default deny › In practice (line 420) |  |
+| `deny-all.yaml` | 19.1 › Isolation and the default deny › In practice (line 448) |  |
+| `allow-front-to-web.yaml` | 19.2 › Allow rules: from, to, ports and how they add up › In practice (line 64) |  |
+| `allow-ops-namespace.yaml` | 19.2 › Allow rules: from, to, ports and how they add up › In practice (line 135) |  |
+| `allow-by-name.yaml` | 19.2 › Allow rules: from, to, ports and how they add up › In practice (line 171) |  |
+| `allow-ipblock.yaml` | 19.2 › Allow rules: from, to, ports and how they add up › In practice (line 205) | a template: the shell fills in $VARIABLES when the chapter runs it |
+| `allow-nothing.yaml` | 19.2 › Allow rules: from, to, ports and how they add up › In practice (line 242) |  |
+| `allow-all-api.yaml` | 19.2 › Allow rules: from, to, ports and how they add up › In practice (line 269) |  |
+| `allow-ops-frontend.yaml` | 19.2 › AND versus OR in a from list › In practice (line 362) |  |
+| `allow-ops-or-backend.yaml` | 19.2 › AND versus OR in a from list › In practice (line 383) |  |
+| `deny-egress-front.yaml` | 19.3 › Egress: DNS first, then the rest › In practice (line 65) |  |
+| `allow-front-egress.yaml` | 19.3 › Egress: DNS first, then the rest › In practice (line 100) |  |
+| `allow-internet.yaml` | 19.3 › Egress: DNS first, then the rest › In practice (line 175) |  |
+| `ingress-only.yaml` | 19.3 › Egress: DNS first, then the rest › In practice (line 239) |  |
+| `meta.yaml` | 19.3 › Protecting the node's metadata address › In practice (line 332) |  |
+| `meta.sh` | 19.3 › Protecting the node's metadata address › In practice (line 409) |  |
+| `no-metadata.yaml` | 19.3 › Protecting the node's metadata address › In practice (line 431) |  |
+| `hostnet.yaml` | 19.4 › Edges: hostNetwork, open connections, refusals, other plugins and debugging › In practice (line 69) |  |
+| `allow-worker2.yaml` | 19.4 › Edges: hostNetwork, open connections, refusals, other plugins and debugging › In practice (line 105) | a template: the shell fills in $VARIABLES when the chapter runs it |
+| `ex-stage.yaml` | 19.4 › Try it yourself (line 282) |  |
+| `ex-deny.yaml` | 19.4 › Try it yourself (line 362) |  |
+| `ex-allow.yaml` | 19.4 › Try it yourself (line 389) |  |
+| `ex-ops.yaml` | 19.4 › Try it yourself (line 425) |  |
+| `ex-egress.yaml` | 19.4 › Try it yourself (line 456) |  |
+| `ex-dns.yaml` | 19.4 › Try it yourself (line 469) |  |
+| `ex-and.yaml` | 19.4 › Try it yourself (line 517) |  |
+| `ex-net.yaml` | 19.4 › Try it yourself (line 557) |  |

@@ -1,6 +1,6 @@
-# 37 - Authorization - RBAC, ClusterRoles and Service Accounts
+# 37 - Authorization Modes, Roles, RoleBindings and Subresources; ClusterRoles, Escalation Prevention, ServiceAccounts and the Node Authorizer
 
-The files the chapter **37 - Authorization - RBAC, ClusterRoles and Service Accounts** of the Kubernetes tutorial writes in its command blocks, copied byte for byte from the chapter. The blocks write them into the work folder `~/kubebook-ch37`; cloning this folder there gives the same files. The chapter explains every line; the table says where each file is written: the section heading and the line where the file's text starts.
+The files the chapter **37**, in its parts **37.1 - Authorization Modes, Roles, RoleBindings and Subresources** and **37.2 - ClusterRoles, Escalation Prevention, ServiceAccounts and the Node Authorizer**, of the Kubernetes tutorial writes in its command blocks, copied byte for byte from the chapter. The blocks write them into the work folder `~/kubebook-ch37`; cloning this folder there gives the same files. The chapter explains every line; the table says where each file is written: the part, the section heading and the line in that part where the file's text starts.
 
 ## What this chapter teaches
 
@@ -17,13 +17,13 @@ The files the chapter **37 - Authorization - RBAC, ClusterRoles and Service Acco
 
 | File | Where it is in the chapter | Note |
 |---|---|---|
-| `deployer.yaml` | Roles and RoleBindings › In practice (line 337) |  |
-| `sar.json` | Roles and RoleBindings › In practice (line 428) |  |
-| `agg.yaml` | ClusterRoles and ClusterRoleBindings › In practice (line 774) |  |
-| `grantor.yaml` | Escalation prevention and good practice › In practice (line 891) |  |
-| `impersonate.yaml` | Escalation prevention and good practice › In practice (line 952) |  |
-| `approver.yaml` | Escalation prevention and good practice › In practice (line 998) |  |
-| `lister.yaml` | ServiceAccounts and RBAC › In practice (line 1087) |  |
-| `lister-nodes.yaml` | ServiceAccounts and RBAC › In practice (line 1119) |  |
-| `automount.yaml` | ServiceAccounts and RBAC › In practice (line 1167) |  |
-| `uses-secret.yaml` | The Node authorizer › In practice (line 1338) |  |
+| `deployer.yaml` | 37.1 › Roles and RoleBindings › In practice (line 341) |  |
+| `sar.json` | 37.1 › Roles and RoleBindings › In practice (line 430) |  |
+| `agg.yaml` | 37.2 › ClusterRoles and ClusterRoleBindings › In practice (line 262) |  |
+| `grantor.yaml` | 37.2 › Escalation prevention and good practice › In practice (line 396) |  |
+| `impersonate.yaml` | 37.2 › Escalation prevention and good practice › In practice (line 459) |  |
+| `approver.yaml` | 37.2 › Escalation prevention and good practice › In practice (line 509) |  |
+| `lister.yaml` | 37.2 › ServiceAccounts and RBAC › In practice (line 615) |  |
+| `lister-nodes.yaml` | 37.2 › ServiceAccounts and RBAC › In practice (line 646) |  |
+| `automount.yaml` | 37.2 › ServiceAccounts and RBAC › In practice (line 694) |  |
+| `uses-secret.yaml` | 37.2 › The Node authorizer › In practice (line 876) |  |

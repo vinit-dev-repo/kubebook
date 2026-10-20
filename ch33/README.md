@@ -1,6 +1,6 @@
-# 33 - Backup, Restore and Monitoring - etcd Snapshots, the Metrics Server and Cluster Logs
+# 33 - The Metrics Pipeline, an Object-State Alert and Cluster Logs; Backing Up etcd, Restoring It and Choosing a Backup
 
-The files the chapter **33 - Backup, Restore and Monitoring - etcd Snapshots, the Metrics Server and Cluster Logs** of the Kubernetes tutorial writes in its command blocks, copied byte for byte from the chapter. The blocks write them into the work folder `~/kubebook-ch33`; cloning this folder there gives the same files. The chapter explains every line; the table says where each file is written: the section heading and the line where the file's text starts.
+The files the chapter **33**, in its parts **33.1 - The Metrics Pipeline, an Object-State Alert and Cluster Logs** and **33.2 - Backing Up etcd, Restoring It and Choosing a Backup**, of the Kubernetes tutorial writes in its command blocks, copied byte for byte from the chapter. The blocks write them into the work folder `~/kubebook-ch33`; cloning this folder there gives the same files. The chapter explains every line; the table says where each file is written: the part, the section heading and the line in that part where the file's text starts.
 
 ## What this chapter teaches
 
@@ -16,11 +16,11 @@ The files the chapter **33 - Backup, Restore and Monitoring - etcd Snapshots, th
 
 | File | Where it is in the chapter | Note |
 |---|---|---|
-| `kind.yaml` | The resource metrics pipeline › In practice (line 73) |  |
-| `rules.yml` | Object-state metrics: a query and an alert you can test › In practice (line 295) |  |
-| `tests.yml` | Object-state metrics: a query and an alert you can test › In practice (line 308) |  |
-| `agent.yaml` | Where cluster logs live › In practice (line 605) |  |
-| `etcd.sh` | Backing up etcd › In practice (line 718) |  |
-| `node-etcd.sh` | Restoring etcd › In practice (line 846) |  |
-| `etcd-ex.sh` | Try it yourself (line 1110) |  |
-| `node-etcd-ex.sh` | Try it yourself (line 1172) |  |
+| `kind.yaml` | 33.1 › The resource metrics pipeline › In practice (line 72) |  |
+| `rules.yml` | 33.1 › Object-state metrics: a query and an alert you can test › In practice (line 308) |  |
+| `tests.yml` | 33.1 › Object-state metrics: a query and an alert you can test › In practice (line 321) |  |
+| `agent.yaml` | 33.1 › Where cluster logs live › In practice (line 633) |  |
+| `etcd.sh` | 33.2 › Backing up etcd › In practice (line 86) |  |
+| `node-etcd.sh` | 33.2 › Restoring etcd › In practice (line 220) |  |
+| `etcd-ex.sh` | 33.2 › Try it yourself (line 496) |  |
+| `node-etcd-ex.sh` | 33.2 › Try it yourself (line 558) |  |

@@ -1,6 +1,6 @@
-# 47 - Kubernetes on Azure - AKS, ACR and Workload Identity
+# 47 - The Azure CLI, an AKS Cluster and a Registry; A Workload behind an Azure Load Balancer, Workload Identity and the Cleanup
 
-The files the chapter **47 - Kubernetes on Azure - AKS, ACR and Workload Identity** of the Kubernetes tutorial writes in its command blocks, copied byte for byte from the chapter. The blocks write them into the work folder `~/kubebook-ch47`; cloning this folder there gives the same files. The chapter explains every line; the table says where each file is written: the section heading and the line where the file's text starts.
+The files the chapter **47**, in its parts **47.1 - The Azure CLI, an AKS Cluster and a Registry** and **47.2 - A Workload behind an Azure Load Balancer, Workload Identity and the Cleanup**, of the Kubernetes tutorial writes in its command blocks, copied byte for byte from the chapter. The blocks write them into the work folder `~/kubebook-ch47`; cloning this folder there gives the same files. The chapter explains every line; the table says where each file is written: the part, the section heading and the line in that part where the file's text starts.
 
 ## What this chapter teaches
 
@@ -16,7 +16,7 @@ The files the chapter **47 - Kubernetes on Azure - AKS, ACR and Workload Identit
 
 | File | Where it is in the chapter | Note |
 |---|---|---|
-| `app/index.html` | Azure Container Registry: building in the cloud and attaching it › In practice (line 271) |  |
-| `app/Dockerfile` | Azure Container Registry: building in the cloud and attaching it › In practice (line 274) |  |
-| `web.yaml` | A workload behind an Azure load balancer › In practice (line 334) |  |
-| `wi.yaml` | Workload Identity: an Entra identity for a ServiceAccount › In practice (line 508) |  |
+| `app/index.html` | 47.1 › Azure Container Registry: building in the cloud and attaching it › In practice (line 281) |  |
+| `app/Dockerfile` | 47.1 › Azure Container Registry: building in the cloud and attaching it › In practice (line 284) |  |
+| `web.yaml` | 47.2 › A workload behind an Azure load balancer › In practice (line 76) |  |
+| `wi.yaml` | 47.2 › Workload Identity: an Entra identity for a ServiceAccount › In practice (line 258) |  |

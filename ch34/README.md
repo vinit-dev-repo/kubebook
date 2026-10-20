@@ -1,6 +1,6 @@
-# 34 - Troubleshooting - Applications, the Control Plane, Worker Nodes and the Network, with JSONPath
+# 34 - A Method for Any Fault, Application Faults and the Control Plane; Worker Node Faults, Network Faults and JSONPath
 
-The files the chapter **34 - Troubleshooting - Applications, the Control Plane, Worker Nodes and the Network, with JSONPath** of the Kubernetes tutorial writes in its command blocks, copied byte for byte from the chapter. The blocks write them into the work folder `~/kubebook-ch34`; cloning this folder there gives the same files. The chapter explains every line; the table says where each file is written: the section heading and the line where the file's text starts.
+The files the chapter **34**, in its parts **34.1 - A Method for Any Fault, Application Faults and the Control Plane** and **34.2 - Worker Node Faults, Network Faults and JSONPath**, of the Kubernetes tutorial writes in its command blocks, copied byte for byte from the chapter. The blocks write them into the work folder `~/kubebook-ch34`; cloning this folder there gives the same files. The chapter explains every line; the table says where each file is written: the part, the section heading and the line in that part where the file's text starts.
 
 ## What this chapter teaches
 
@@ -15,10 +15,10 @@ The files the chapter **34 - Troubleshooting - Applications, the Control Plane, 
 
 | File | Where it is in the chapter | Note |
 |---|---|---|
-| `kind.yaml` | A method for any fault › In practice (line 86) |  |
-| `svc.yaml` | A method for any fault › In practice (line 121) |  |
-| `chain.sh` | A method for any fault › In practice (line 139) |  |
-| `big.yaml` | Application faults: from the Service to the container › In practice (line 382) |  |
-| `ex-api.yaml` | Try it yourself (line 1005) |  |
-| `ex-sel.yaml` | Try it yourself (line 1080) |  |
-| `ex-pending.yaml` | Try it yourself (line 1156) |  |
+| `kind.yaml` | 34.1 › A method for any fault › In practice (line 82) |  |
+| `svc.yaml` | 34.1 › A method for any fault › In practice (line 115) |  |
+| `chain.sh` | 34.1 › A method for any fault › In practice (line 134) |  |
+| `big.yaml` | 34.1 › Application faults: from the Service to the container › In practice (line 409) |  |
+| `ex-api.yaml` | 34.2 › Try it yourself (line 537) |  |
+| `ex-sel.yaml` | 34.2 › Try it yourself (line 612) |  |
+| `ex-pending.yaml` | 34.2 › Try it yourself (line 688) |  |

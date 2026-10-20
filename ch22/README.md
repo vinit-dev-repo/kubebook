@@ -1,6 +1,6 @@
-# 22 - A Java Stack on Kubernetes - Tomcat, MySQL, Memcached, RabbitMQ, Secrets, Volumes and Ingress
+# 22 - Reading the Stack and the App Image; Secrets, MySQL, Memcached and RabbitMQ; Init Containers, the Ingress, Operating the Stack and the Exercises
 
-The files the chapter **22 - A Java Stack on Kubernetes - Tomcat, MySQL, Memcached, RabbitMQ, Secrets, Volumes and Ingress** of the Kubernetes tutorial writes in its command blocks, copied byte for byte from the chapter. The blocks write them into the work folder `~/kubebook-ch22`; cloning this folder there gives the same files. The chapter explains every line; the table says where each file is written: the section heading and the line where the file's text starts.
+The files the chapter **22**, in its parts **22.1 - Reading the Stack and the App Image**, **22.2 - Secrets, MySQL, Memcached and RabbitMQ** and **22.3 - Init Containers, the Ingress, Operating the Stack and the Exercises**, of the Kubernetes tutorial writes in its command blocks, copied byte for byte from the chapter. The blocks write them into the work folder `~/kubebook-ch22`; cloning this folder there gives the same files. The chapter explains every line; the table says where each file is written: the part, the section heading and the line in that part where the file's text starts.
 
 ## What this chapter teaches
 
@@ -17,16 +17,16 @@ The files the chapter **22 - A Java Stack on Kubernetes - Tomcat, MySQL, Memcach
 
 | File | Where it is in the chapter | Note |
 |---|---|---|
-| `kind.yaml` | Reading the stack before moving it › In practice (line 104) |  |
-| `app/src/main/resources/application.properties` | The app image › In practice (line 176) |  |
-| `app/src/main/java/kubebook/ch22/StatusServlet.java` | The app image › In practice (line 198) |  |
-| `app/pom.xml` | The app image › In practice (line 296) |  |
-| `app/Dockerfile` | The app image › In practice (line 346) |  |
-| `secret-demo.yaml` | Secrets and the database › In practice (line 448) |  |
-| `secret-bad.yaml` | Secrets and the database › In practice (line 479) |  |
-| `k8s/db.yaml` | Secrets and the database › In practice (line 514) |  |
-| `k8s/cache.yaml` | The cache and the queue › In practice (line 689) |  |
-| `k8s/queue.yaml` | The cache and the queue › In practice (line 722) |  |
-| `k8s/app.yaml` | Starting in order, and the Ingress › In practice (line 885) |  |
-| `k8s/ingress.yaml` | Starting in order, and the Ingress › In practice (line 1121) |  |
-| `patch.json` | Try it yourself (line 1479) |  |
+| `kind.yaml` | 22.1 › Reading the stack before moving it › In practice (line 102) |  |
+| `app/src/main/resources/application.properties` | 22.1 › The app image › In practice (line 185) |  |
+| `app/src/main/java/kubebook/ch22/StatusServlet.java` | 22.1 › The app image › In practice (line 210) |  |
+| `app/pom.xml` | 22.1 › The app image › In practice (line 307) |  |
+| `app/Dockerfile` | 22.1 › The app image › In practice (line 357) |  |
+| `secret-demo.yaml` | 22.2 › Secrets and the database › In practice (line 120) |  |
+| `secret-bad.yaml` | 22.2 › Secrets and the database › In practice (line 151) |  |
+| `k8s/db.yaml` | 22.2 › Secrets and the database › In practice (line 186) |  |
+| `k8s/cache.yaml` | 22.2 › The cache and the queue › In practice (line 371) |  |
+| `k8s/queue.yaml` | 22.2 › The cache and the queue › In practice (line 404) |  |
+| `k8s/app.yaml` | 22.3 › Starting in order, and the Ingress › In practice (line 79) |  |
+| `k8s/ingress.yaml` | 22.3 › Starting in order, and the Ingress › In practice (line 316) |  |
+| `patch.json` | 22.3 › Try it yourself (line 707) |  |

@@ -1,6 +1,6 @@
-# 03 - First Steps with kubectl - a Pod, a Deployment and a Service, Imperatively
+# 03 - The Lab Cluster, kubectl and a First Pod; Deployments, Scaling and a Service; Your Own App and the Outside World
 
-The files the chapter **03 - First Steps with kubectl - a Pod, a Deployment and a Service, Imperatively** of the Kubernetes tutorial writes in its command blocks, copied byte for byte from the chapter. The blocks write them into the work folder `~/kubebook-ch03`; cloning this folder there gives the same files. The chapter explains every line; the table says where each file is written: the section heading and the line where the file's text starts.
+The files the chapter **03**, in its parts **03.1 - The Lab Cluster, kubectl and a First Pod**, **03.2 - Deployments, Scaling and a Service** and **03.3 - Your Own App and the Outside World**, of the Kubernetes tutorial writes in its command blocks, copied byte for byte from the chapter. The blocks write them into the work folder `~/kubebook-ch03`; cloning this folder there gives the same files. The chapter explains every line; the table says where each file is written: the part, the section heading and the line in that part where the file's text starts.
 
 ## What this chapter teaches
 
@@ -16,7 +16,7 @@ The files the chapter **03 - First Steps with kubectl - a Pod, a Deployment and 
 
 | File | Where it is in the chapter | Note |
 |---|---|---|
-| `kind.yaml` | The chapter's cluster and the shape of a kubectl command › In practice (line 69) |  |
-| `package.json` | The book's own app, loaded into the cluster › In practice (line 680) |  |
-| `index.mjs` | The book's own app, loaded into the cluster › In practice (line 691) |  |
-| `Dockerfile` | The book's own app, loaded into the cluster › In practice (line 705) |  |
+| `kind.yaml` | 03.1 › The chapter's cluster and the shape of a kubectl command › In practice (line 64) |  |
+| `package.json` | 03.3 › The book's own app, loaded into the cluster › In practice (line 64) |  |
+| `index.mjs` | 03.3 › The book's own app, loaded into the cluster › In practice (line 75) |  |
+| `Dockerfile` | 03.3 › The book's own app, loaded into the cluster › In practice (line 89) |  |

@@ -1,6 +1,6 @@
-# 44 - From Laptop to Production - Choosing a Cluster, Load Balancers, and HTTPS with cert-manager
+# 44 - Choosing a Cluster, Helm Charts and a Load Balancer with Traefik; HTTPS with cert-manager - Issuers, Certificates, Renewal and Cleaning Up
 
-The files the chapter **44 - From Laptop to Production - Choosing a Cluster, Load Balancers, and HTTPS with cert-manager** of the Kubernetes tutorial writes in its command blocks, copied byte for byte from the chapter. The blocks write them into the work folder `~/kubebook-ch44`; cloning this folder there gives the same files. The chapter explains every line; the table says where each file is written: the section heading and the line where the file's text starts.
+The files the chapter **44**, in its parts **44.1 - Choosing a Cluster, Helm Charts and a Load Balancer with Traefik** and **44.2 - HTTPS with cert-manager - Issuers, Certificates, Renewal and Cleaning Up**, of the Kubernetes tutorial writes in its command blocks, copied byte for byte from the chapter. The blocks write them into the work folder `~/kubebook-ch44`; cloning this folder there gives the same files. The chapter explains every line; the table says where each file is written: the part, the section heading and the line in that part where the file's text starts.
 
 ## What this chapter teaches
 
@@ -17,10 +17,10 @@ The files the chapter **44 - From Laptop to Production - Choosing a Cluster, Loa
 
 | File | Where it is in the chapter | Note |
 |---|---|---|
-| `charts.sha256` | Charts from a file with Helm › In practice (line 161) |  |
-| `app.yaml` | A load balancer and an ingress controller › In practice (line 336) |  |
-| `ingress.yaml` | A load balancer and an ingress controller › In practice (line 399) |  |
-| `issuers.yaml` | cert-manager and issuers › In practice (line 483) |  |
-| `ingress-tls.yaml` | A certificate for an Ingress › In practice (line 582) |  |
-| `ex-api.yaml` | Try it yourself (line 901) |  |
-| `redirect.yaml` | Try it yourself (line 942) |  |
+| `charts.sha256` | 44.1 › Charts from a file with Helm › In practice (line 167) |  |
+| `app.yaml` | 44.1 › A load balancer and an ingress controller › In practice (line 344) |  |
+| `ingress.yaml` | 44.1 › A load balancer and an ingress controller › In practice (line 408) |  |
+| `issuers.yaml` | 44.2 › cert-manager and issuers › In practice (line 92) |  |
+| `ingress-tls.yaml` | 44.2 › A certificate for an Ingress › In practice (line 197) |  |
+| `ex-api.yaml` | 44.2 › Try it yourself (line 524) |  |
+| `redirect.yaml` | 44.2 › Try it yourself (line 565) |  |

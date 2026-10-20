@@ -1,6 +1,6 @@
-# 07 - Organizing Objects - Labels, Selectors, Annotations and Namespaces
+# 07 - Labels and Selectors; Labels as Glue, and Annotations; Namespaces, DNS Names and Switching Fast
 
-The files the chapter **07 - Organizing Objects - Labels, Selectors, Annotations and Namespaces** of the Kubernetes tutorial writes in its command blocks, copied byte for byte from the chapter. The blocks write them into the work folder `~/kubebook-ch07`; cloning this folder there gives the same files. The chapter explains every line; the table says where each file is written: the section heading and the line where the file's text starts.
+The files the chapter **07**, in its parts **07.1 - Labels and Selectors**, **07.2 - Labels as Glue, and Annotations** and **07.3 - Namespaces, DNS Names and Switching Fast**, of the Kubernetes tutorial writes in its command blocks, copied byte for byte from the chapter. The blocks write them into the work folder `~/kubebook-ch07`; cloning this folder there gives the same files. The chapter explains every line; the table says where each file is written: the part, the section heading and the line in that part where the file's text starts.
 
 ## What this chapter teaches
 
@@ -16,10 +16,10 @@ The files the chapter **07 - Organizing Objects - Labels, Selectors, Annotations
 
 | File | Where it is in the chapter | Note |
 |---|---|---|
-| `rs.yaml` | Labels as the glue between objects › In practice (line 370) |  |
-| `rsx.yaml` | Labels as the glue between objects › In practice (line 490) |  |
-| `ann.yaml` | Annotations › In practice (line 638) |  |
-| `ns.yaml` | Namespaces › In practice (line 759) |  |
-| `podns.yaml` | Namespaces › In practice (line 837) |  |
-| `back-svc.yaml` | Try it yourself (line 1422) |  |
-| `front-rs.yaml` | Try it yourself (line 1464) |  |
+| `rs.yaml` | 07.2 › Labels as the glue between objects › In practice (line 58) |  |
+| `rsx.yaml` | 07.2 › Labels as the glue between objects › In practice (line 174) |  |
+| `ann.yaml` | 07.2 › Annotations › In practice (line 322) |  |
+| `ns.yaml` | 07.3 › Namespaces › In practice (line 113) |  |
+| `podns.yaml` | 07.3 › Namespaces › In practice (line 189) |  |
+| `back-svc.yaml` | 07.3 › Try it yourself (line 790) |  |
+| `front-rs.yaml` | 07.3 › Try it yourself (line 832) |  |

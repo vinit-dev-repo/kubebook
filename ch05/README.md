@@ -1,6 +1,6 @@
-# 05 - Pods in Depth - Commands and Arguments, Multi-Container Pods, Init Containers and Sidecars
+# 05 - What a Pod Shares, Commands and Arguments; Two Containers, Attach and Shared Processes; Port-Forward and Init Containers; Sidecars and Editing a Running Pod
 
-The files the chapter **05 - Pods in Depth - Commands and Arguments, Multi-Container Pods, Init Containers and Sidecars** of the Kubernetes tutorial writes in its command blocks, copied byte for byte from the chapter. The blocks write them into the work folder `~/kubebook-ch05`; cloning this folder there gives the same files. The chapter explains every line; the table says where each file is written: the section heading and the line where the file's text starts.
+The files the chapter **05**, in its parts **05.1 - What a Pod Shares, Commands and Arguments**, **05.2 - Two Containers, Attach and Shared Processes**, **05.3 - Port-Forward and Init Containers** and **05.4 - Sidecars and Editing a Running Pod**, of the Kubernetes tutorial writes in its command blocks, copied byte for byte from the chapter. The blocks write them into the work folder `~/kubebook-ch05`; cloning this folder there gives the same files. The chapter explains every line; the table says where each file is written: the part, the section heading and the line in that part where the file's text starts.
 
 ## What this chapter teaches
 
@@ -8,6 +8,7 @@ The files the chapter **05 - Pods in Depth - Commands and Arguments, Multi-Conta
 - Map a Dockerfile's `ENTRYPOINT` and `CMD` to a Pod's `command` and `args`, and read a finished container's exit code
 - Run two containers in one Pod that share `localhost` and a folder, and pick one of them with `-c`
 - Send a line with `kubectl attach -i` to an already-running container and verify what it wrote
+- Share the process namespace of a Pod, and add host names to one Pod with `hostAliases`
 - Reach one Pod from your own machine with `kubectl port-forward`, with no Service in place
 - Run init containers in order, and read what a failing one looks like
 - Add a native sidecar with `restartPolicy: Always`, and tell it from an init container and from a second regular container
@@ -17,21 +18,21 @@ The files the chapter **05 - Pods in Depth - Commands and Arguments, Multi-Conta
 
 | File | Where it is in the chapter | Note |
 |---|---|---|
-| `sleeper/Dockerfile` | A Pod, properly - what its containers share › In practice (line 116) |  |
-| `sleepers.yaml` | Commands and arguments - ENTRYPOINT and CMD in a Pod › In practice (line 189) |  |
-| `bad-args.yaml` | Commands and arguments - ENTRYPOINT and CMD in a Pod › In practice (line 358) |  |
-| `two.yaml` | Two containers in one Pod › In practice (line 406) |  |
-| `ch05-attach.yaml` | Two containers in one Pod › Send a line to a running container's standard input (line 561) |  |
-| `sees.yaml` | Seeing a sibling's processes, and adding names to a Pod › In practice (line 673) |  |
-| `target.yaml` | Seeing a sibling's processes, and adding names to a Pod › Preview a migration in one Pod (line 813) |  |
-| `preview.yaml` | Seeing a sibling's processes, and adding names to a Pod › Preview a migration in one Pod (line 839) | a template: the shell fills in $VARIABLES when the chapter runs it; the chapter adds to it in later blocks |
-| `peer.yaml` | Seeing a sibling's processes, and adding names to a Pod › Preview a migration in one Pod (line 839) | a template: the shell fills in $VARIABLES when the chapter runs it; the chapter adds to it in later blocks |
-| `init.yaml` | Init containers - setup that finishes before the app starts › In practice (line 1089) |  |
-| `initfail.yaml` | Init containers - setup that finishes before the app starts › In practice (line 1181) |  |
-| `sidecar.yaml` | Sidecar containers - helpers that start first and stop last › In practice (line 1271) |  |
-| `initprobe.yaml` | Sidecar containers - helpers that start first and stop last › In practice (line 1349) |  |
-| `ex2.yaml` | Try it yourself (line 1552) |  |
-| `ex3.yaml` | Try it yourself (line 1577) |  |
-| `ex4.yaml` | Try it yourself (line 1612) |  |
-| `ex5.yaml` | Try it yourself (line 1645) |  |
-| `ex7.yaml` | Try it yourself (line 1708) |  |
+| `sleeper/Dockerfile` | 05.1 › A Pod, properly - what its containers share › In practice (line 106) |  |
+| `sleepers.yaml` | 05.1 › Commands and arguments - ENTRYPOINT and CMD in a Pod › In practice (line 188) |  |
+| `bad-args.yaml` | 05.1 › Commands and arguments - ENTRYPOINT and CMD in a Pod › In practice (line 353) |  |
+| `two.yaml` | 05.2 › Two containers in one Pod › In practice (line 72) |  |
+| `ch05-attach.yaml` | 05.2 › Two containers in one Pod › Send a line to a running container's standard input (line 224) |  |
+| `sees.yaml` | 05.2 › Seeing a sibling's processes, and adding names to a Pod › In practice (line 348) |  |
+| `target.yaml` | 05.2 › Seeing a sibling's processes, and adding names to a Pod › Preview a migration in one Pod (line 482) |  |
+| `preview.yaml` | 05.2 › Seeing a sibling's processes, and adding names to a Pod › Preview a migration in one Pod (line 508) | a template: the shell fills in $VARIABLES when the chapter runs it; the chapter adds to it in later blocks |
+| `peer.yaml` | 05.2 › Seeing a sibling's processes, and adding names to a Pod › Preview a migration in one Pod (line 508) | a template: the shell fills in $VARIABLES when the chapter runs it; the chapter adds to it in later blocks |
+| `init.yaml` | 05.3 › Init containers - setup that finishes before the app starts › In practice (line 125) |  |
+| `initfail.yaml` | 05.3 › Init containers - setup that finishes before the app starts › In practice (line 212) |  |
+| `sidecar.yaml` | 05.4 › Sidecar containers - helpers that start first and stop last › In practice (line 64) |  |
+| `initprobe.yaml` | 05.4 › Sidecar containers - helpers that start first and stop last › In practice (line 139) |  |
+| `ex2.yaml` | 05.4 › Try it yourself (line 346) |  |
+| `ex3.yaml` | 05.4 › Try it yourself (line 371) |  |
+| `ex4.yaml` | 05.4 › Try it yourself (line 406) |  |
+| `ex5.yaml` | 05.4 › Try it yourself (line 439) |  |
+| `ex7.yaml` | 05.4 › Try it yourself (line 502) |  |

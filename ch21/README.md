@@ -1,6 +1,6 @@
-# 21 - A Multi-Container Application on Kubernetes - a Worker, Postgres, Redis, a React Client and Ingress
+# 21 - From Compose to Kubernetes and the Three Images; Services by Name, the Secret, Postgres, Redis and the Worker; The Ingress, Operating the Application and the Exercises
 
-The files the chapter **21 - A Multi-Container Application on Kubernetes - a Worker, Postgres, Redis, a React Client and Ingress** of the Kubernetes tutorial writes in its command blocks, copied byte for byte from the chapter. The blocks write them into the work folder `~/kubebook-ch21`; cloning this folder there gives the same files. The chapter explains every line; the table says where each file is written: the section heading and the line where the file's text starts.
+The files the chapter **21**, in its parts **21.1 - From Compose to Kubernetes and the Three Images**, **21.2 - Services by Name, the Secret, Postgres, Redis and the Worker** and **21.3 - The Ingress, Operating the Application and the Exercises**, of the Kubernetes tutorial writes in its command blocks, copied byte for byte from the chapter. The blocks write them into the work folder `~/kubebook-ch21`; cloning this folder there gives the same files. The chapter explains every line; the table says where each file is written: the part, the section heading and the line in that part where the file's text starts.
 
 ## What this chapter teaches
 
@@ -17,18 +17,18 @@ The files the chapter **21 - A Multi-Container Application on Kubernetes - a Wor
 
 | File | Where it is in the chapter | Note |
 |---|---|---|
-| `kind.yaml` | From Compose to Kubernetes: what each part becomes › In practice (line 96) |  |
-| `worker/package.json` | The three images and the api's two route prefixes › In practice (line 165) |  |
-| `worker/index.js` | The three images and the api's two route prefixes › In practice (line 174) |  |
-| `server/package.json` | The three images and the api's two route prefixes › In practice (line 212) |  |
-| `server/index.js` | The three images and the api's two route prefixes › In practice (line 223) |  |
-| `server/Dockerfile` | The three images and the api's two route prefixes › In practice (line 295) |  |
-| `worker/Dockerfile` | The three images and the api's two route prefixes › In practice (line 295) |  |
-| `client/index.html` | The three images and the api's two route prefixes › In practice (line 304) |  |
-| `client/Dockerfile` | The three images and the api's two route prefixes › In practice (line 328) |  |
-| `k8s/api.yaml` | Configuration: Services by name, env and the Secret › In practice (line 459) |  |
-| `k8s/client.yaml` | Configuration: Services by name, env and the Secret › In practice (line 515) |  |
-| `k8s/postgres.yaml` | Postgres, Redis and the worker › In practice (line 586) |  |
-| `k8s/redis.yaml` | Postgres, Redis and the worker › In practice (line 649) |  |
-| `k8s/worker.yaml` | Postgres, Redis and the worker › In practice (line 681) |  |
-| `k8s/ingress.yaml` | The Ingress in front › In practice (line 940) |  |
+| `kind.yaml` | 21.1 › From Compose to Kubernetes: what each part becomes › In practice (line 93) |  |
+| `worker/package.json` | 21.1 › The three images and the api's two route prefixes › In practice (line 177) |  |
+| `worker/index.js` | 21.1 › The three images and the api's two route prefixes › In practice (line 186) |  |
+| `server/package.json` | 21.1 › The three images and the api's two route prefixes › In practice (line 226) |  |
+| `server/index.js` | 21.1 › The three images and the api's two route prefixes › In practice (line 237) |  |
+| `server/Dockerfile` | 21.1 › The three images and the api's two route prefixes › In practice (line 308) |  |
+| `worker/Dockerfile` | 21.1 › The three images and the api's two route prefixes › In practice (line 308) |  |
+| `client/index.html` | 21.1 › The three images and the api's two route prefixes › In practice (line 317) |  |
+| `client/Dockerfile` | 21.1 › The three images and the api's two route prefixes › In practice (line 341) |  |
+| `k8s/api.yaml` | 21.2 › Configuration: Services by name, env and the Secret › In practice (line 103) |  |
+| `k8s/client.yaml` | 21.2 › Configuration: Services by name, env and the Secret › In practice (line 158) |  |
+| `k8s/postgres.yaml` | 21.2 › Postgres, Redis and the worker › In practice (line 236) |  |
+| `k8s/redis.yaml` | 21.2 › Postgres, Redis and the worker › In practice (line 298) |  |
+| `k8s/worker.yaml` | 21.2 › Postgres, Redis and the worker › In practice (line 330) |  |
+| `k8s/ingress.yaml` | 21.3 › The Ingress in front › In practice (line 144) |  |
